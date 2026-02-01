@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INMO | Venta de Terrenos</title>
+
+<style>
+:root {
+  --azul:#0b3c5d;
+  --dorado:#c9a227;
+  --rojo:#b11226;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family:Arial, sans-serif;
+  background:#fff;
+  color:#222;
+}
+
+header {
+  background:var(--azul);
+  color:#fff;
+  padding:1rem 1.5rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header h1 {
+  color:var(--dorado);
+}
+
+nav a {
+  color:#fff;
+  margin-left:1rem;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+section {
+  padding:3rem 1.5rem;
+}
+
+.section-title {
+  text-align:center;
+  color:var(--azul);
+  margin-bottom:2rem;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+  gap:2rem;
+}
+
+.card {
+  border:1px solid #ddd;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+/* GALERÍA */
+.galeria {
+  padding:1rem;
+}
+
+.galeria img.principal {
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:6px;
+  margin-bottom:.5rem;
+}
+
+.miniaturas {
+  display:flex;
+  gap:.5rem;
+}
+
+.miniaturas img {
+  width:70px;
+  height:60px;
+  object-fit:cover;
+  border-radius:4px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.miniaturas img:hover {
+  border:2px solid var(--azul);
+}
+
+.card-content {
+  padding:1rem;
+}
+
+.precio {
+  color:var(--rojo);
+  font-size:1.3rem;
+  font-weight:bold;
+}
+
+.btn {
+  display:inline-block;
+  margin-top:1rem;
+  padding:.6rem 1rem;
+  border-radius:4px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:bold;
+}
+
+.btn-whatsapp {
+  background:#25D366;
+  margin-right:8px;
+}
+
+.btn-llamar {
+  background:var(--azul);
+}
+
+/* BOTÓN FLOTANTE */
+.whatsapp-float {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  text-align:center;
+  font-size:28px;
+  line-height:55px;
+  text-decoration:none;
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>INMO</h1>
+  <nav>
+    <a href="#propiedades">Propiedades</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section id="propiedades">
+  <h2 class="section-title">Terrenos en Venta</h2>
+
+  <div class="cards">
+
+    <!-- TERRENO MATLAPA -->
+    <div class="card">
+
+      <!-- GALERÍA -->
+      <div class="galeria">
+        <img id="imgPrincipal" src="IMAGENES/matlapa1.jpg" class="principal" alt="Terreno Matlapa">
+
+        <div class="miniaturas">
+          <img src="IMAGENES/matlapa1.jpg" onclick="cambiarImagen(this)">
+          <img src="IMAGENES/matlapa2.jpg" onclick="cambiarImagen(this)">
+        </div>
+      </div>
+
+      <div class="card-content">
+        <p class="precio">$9,000,000 MXN <small>(a tratar)</small></p>
+
+        <p>
+          📍 <strong>Matlapa, San Luis Potosí</strong><br>
+          📐 Superficie: <strong>2,163.38 m²</strong><br>
+          🛣️ Carretera México–Laredo<br>
+          🚗 Salida a Tamazunchale<br>
+          🏘️ Col. Villa la Lolita<br>
+          📏 30 m frente a carretera<br>
+          ⚡ Todos los servicios<br>
+          📄 Escritura pública
+        </p>
+
+        <a
+          href="https://api.whatsapp.com/send?phone=5214891272470&text=Hola,%20me%20interesa%20el%20terreno%20en%20Matlapa%20de%202,163.38%20m2"
+          target="_blank"
+          class="btn btn-whatsapp">
+          📲 WhatsApp
+        </a>
+
+        <a
+          href="tel:4891272470"
+          class="btn btn-llamar">
+          📞 Llamar
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="contacto">
+  <h2 class="section-title">Contacto</h2>
+  <p style="text-align:center;">
+    📞 WhatsApp: <strong>489 127 24 70</strong>
+  </p>
+</section>
+
+<footer style="background:#0b3c5d;color:#fff;text-align:center;padding:1.5rem;">
+  © 2026 INMO | Todos los derechos reservados
+</footer>
+
+<a
+  href="https://api.whatsapp.com/send?phone=5214891272470&text=Hola,%20quiero%20información%20sobre%20sus%20propiedades"
+  class="whatsapp-float"
+  target="_blank">
+  💬
+</a>
+
+<script>
+function cambiarImagen(elemento) {
+  document.getElementById("imgPrincipal").src = elemento.src;
+}
+</script>
+
+</body>
+</html>
