@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -106,7 +106,7 @@ section { padding: 4rem 2rem; scroll-margin-top: 80px; }
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.card img { width: 100%; height: 200px; object-fit: cover; }
+.card img { width: 100%; height: 200px; object-fit: cover; margin-bottom: 5px; }
 
 .card-content { padding: 1rem; }
 
@@ -212,6 +212,7 @@ footer {
       <option value="">Tipo</option>
       <option value="casa">Casa</option>
       <option value="terreno">Terreno</option>
+      <option value="bodega">Bodega</option>
     </select>
     <input type="text" id="ubicacion" placeholder="Ubicación" />
     <input type="number" id="precio" placeholder="Precio máximo" />
@@ -222,6 +223,8 @@ footer {
 <section id="propiedades">
   <h2 class="section-title">Propiedades en Venta</h2>
   <div class="cards" id="propiedadesCards">
+
+    <!-- Propiedad Matlapa 1 -->
     <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9000000">
       <img src="matlapa1.jpg" alt="Terreno Matlapa 1">
       <div class="card-content">
@@ -231,6 +234,7 @@ footer {
       </div>
     </div>
 
+    <!-- Propiedad Matlapa 2 -->
     <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9500000">
       <img src="matlapa2.jpg" alt="Terreno Matlapa 2">
       <div class="card-content">
@@ -239,6 +243,29 @@ footer {
         <a href="https://wa.me/4891272470?text=Hola,%20quiero%20más%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
       </div>
     </div>
+
+    <!-- Nueva Bodega en Tamuín -->
+    <div class="card" data-tipo="bodega" data-ubicacion="centro" data-precio="5900000">
+      <div class="card-content">
+        <h3>Bodega en Tamuín S.L.P.</h3>
+        <img src="bodegatamuin1.jpg" alt="Bodega Tamuín 1">
+        <img src="bodegatamuin2.jpg" alt="Bodega Tamuín 2">
+        <img src="bodegatamuin3.jpg" alt="Bodega Tamuín 3">
+        <img src="bodegatamuin4.jpg" alt="Bodega Tamuín 4">
+
+        <p class="precio">$5,900,000 MXN</p>
+        <p>
+          Gran Venta de Bodega en el mero centro de Tamuín S.L.P.<br>
+          Cuenta con 2 entradas, por las 2 Calles (entrada principal Calle Jarrilla y Calle trasera sobre calle Infonavit).<br>
+          Terreno: 1,600 m², Construcción: 600 m² aprox.<br>
+          Amplia oficina y departamento de 3 recámaras, sala-comedor y cocina en la parte superior.<br>
+          Todos los servicios disponibles y pavimentación por ambas calles.<br>
+          Solo se vende el terreno.
+        </p>
+        <a href="https://wa.me/4891272470?text=Hola,%20quiero%20más%20información%20sobre%20la%20bodega%20en%20Tamuín" class="btn" target="_blank">Más información</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
