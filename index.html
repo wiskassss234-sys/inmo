@@ -1,234 +1,311 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INMO | Venta de Terrenos</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>INMO | Venta de Terrenos y Propiedades</title>
 <style>
 :root {
-  --azul:#0b3c5d;
-  --dorado:#c9a227;
-  --rojo:#b11226;
+  --azul: #0b3c5d;
+  --dorado: #c9a227;
+  --rojo: #b11226;
+  --gris: #f4f4f4;
+  --oscuro: #222;
 }
-
-* {
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family:Arial, sans-serif;
-  background:#fff;
-  color:#222;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--oscuro);
+  line-height: 1.6;
+  background-color: #fff;
 }
 
 header {
-  background:var(--azul);
-  color:#fff;
-  padding:1rem 1.5rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  background: var(--azul);
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header h1 {
-  color:var(--dorado);
-}
+header h1 { font-size: 1.5rem; color: var(--dorado); }
 
 nav a {
-  color:#fff;
-  margin-left:1rem;
-  text-decoration:none;
-  font-weight:bold;
+  color: #fff;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+nav a:hover { color: var(--dorado); }
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('matlapa1.jpg') center/cover no-repeat;
+  color: #fff;
+  padding: 5rem 2rem;
+  text-align: center;
 }
 
-section {
-  padding:3rem 1.5rem;
+.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+
+.buscador {
+  background: #fff;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  border-radius: 8px;
 }
+
+.buscador input, .buscador select, .buscador button {
+  padding: 0.7rem;
+  font-size: 1rem;
+}
+
+.buscador button {
+  background: var(--rojo);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.buscador button:hover { background: darkred; }
+
+section { padding: 4rem 2rem; scroll-margin-top: 80px; }
 
 .section-title {
-  text-align:center;
-  color:var(--azul);
-  margin-bottom:2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--azul);
 }
 
 .cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
-  gap:2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .card {
-  border:1px solid #ddd;
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* GALERÍA */
-.galeria {
-  padding:1rem;
-}
+.card img { width: 100%; height: 200px; object-fit: cover; }
 
-.galeria img.principal {
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  border-radius:6px;
-  margin-bottom:.5rem;
-}
-
-.miniaturas {
-  display:flex;
-  gap:.5rem;
-}
-
-.miniaturas img {
-  width:70px;
-  height:60px;
-  object-fit:cover;
-  border-radius:4px;
-  cursor:pointer;
-  border:2px solid transparent;
-}
-
-.miniaturas img:hover {
-  border:2px solid var(--azul);
-}
-
-.card-content {
-  padding:1rem;
-}
+.card-content { padding: 1rem; }
 
 .precio {
-  color:var(--rojo);
-  font-size:1.3rem;
-  font-weight:bold;
+  color: var(--rojo);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .btn {
-  display:inline-block;
-  margin-top:1rem;
-  padding:.6rem 1rem;
-  border-radius:4px;
-  text-decoration:none;
-  color:#fff;
-  font-weight:bold;
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--azul);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+.btn:hover { background: #07253b; }
+
+.beneficios {
+  background: var(--gris);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
 }
 
-.btn-whatsapp {
-  background:#25D366;
-  margin-right:8px;
+.beneficio h3 { color: var(--azul); margin-bottom: .5rem; }
+
+.contacto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
-.btn-llamar {
-  background:var(--azul);
+form input, form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
 }
 
-/* BOTÓN FLOTANTE */
+form button {
+  background: var(--rojo);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+form button:hover { background: darkred; }
+
+footer {
+  background: var(--azul);
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* Botón flotante WhatsApp */
 .whatsapp-float {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:55px;
-  height:55px;
-  background:#25D366;
-  color:#fff;
-  border-radius:50%;
-  text-align:center;
-  font-size:28px;
-  line-height:55px;
-  text-decoration:none;
-  box-shadow:0 4px 10px rgba(0,0,0,.3);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.whatsapp-float:hover { background-color: #1ebe5d; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  header { flex-direction: column; text-align: center; }
+  nav a { margin: 0.5rem; display: inline-block; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <h1>INMO</h1>
   <nav>
+    <a href="#hero">Inicio</a>
     <a href="#propiedades">Propiedades</a>
+    <a href="#terrenos">Terrenos</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
+<section class="hero" id="hero">
+  <h2>Encuentra tu próxima propiedad</h2>
+  <p>Terrenos y bienes raíces con respaldo profesional</p>
+  <form class="buscador" id="formBuscador">
+    <select id="tipo">
+      <option value="">Tipo</option>
+      <option value="casa">Casa</option>
+      <option value="terreno">Terreno</option>
+    </select>
+    <input type="text" id="ubicacion" placeholder="Ubicación" />
+    <input type="number" id="precio" placeholder="Precio máximo" />
+    <button type="submit">Buscar</button>
+  </form>
+</section>
+
 <section id="propiedades">
-  <h2 class="section-title">Terrenos en Venta</h2>
-
-  <div class="cards">
-
-    <!-- TERRENO MATLAPA -->
-    <div class="card">
-
-      <!-- GALERÍA -->
-      <div class="galeria">
-        <img id="imgPrincipal" src="matlapa1.jpg" class="principal" alt="Terreno Matlapa">
-
-        <div class="miniaturas">
-          <img src="matlapa1.jpg" onclick="cambiarImagen(this)">
-          <img src="matlapa2.jpg" onclick="cambiarImagen(this)">
-        </div>
-      </div>
-
+  <h2 class="section-title">Propiedades en Venta</h2>
+  <div class="cards" id="propiedadesCards">
+    <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9000000">
+      <img src="matlapa1.jpg" alt="Terreno Matlapa 1">
       <div class="card-content">
-        <p class="precio">$9,000,000 MXN <small>(a tratar)</small></p>
-
-        <p>
-          📍 <strong>Matlapa, San Luis Potosí</strong><br>
-          📐 Superficie: <strong>2,163.38 m²</strong><br>
-          🛣️ Carretera México–Laredo<br>
-          🚗 Salida a Tamazunchale<br>
-          🏘️ Col. Villa la Lolita<br>
-          📏 30 m frente a carretera<br>
-          ⚡ Todos los servicios<br>
-          📄 Escritura pública
-        </p>
-
-        <a
-          href="https://api.whatsapp.com/send?phone=524444917754&text=Hola,%20me%20interesa%20el%20terreno%20en%20Matlapa%20de%202,163.38%20m2"
-          target="_blank"
-          class="btn btn-whatsapp">
-          📲 WhatsApp
-        </a>
-
-        <a
-          href="tel:4444917754 "
-          class="btn btn-llamar">
-          📞 Llamar
-        </a>
+        <p class="precio">$9,000,000 MXN</p>
+        <p>Terreno 2,163.38 m² en zona urbana, a orilla de Carretera México-Laredo, salida a Tamazunchale, Col. Villa la Lolita, con todos los servicios, escritura pública, 30 m frente a carretera.</p>
+        <a href="https://wa.me/4891272470?text=Hola,%20quiero%20más%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
       </div>
-
     </div>
 
+    <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9500000">
+      <img src="matlapa2.jpg" alt="Terreno Matlapa 2">
+      <div class="card-content">
+        <p class="precio">$9,500,000 MXN</p>
+        <p>Terreno en venta en Matlapa S.L.P., zona urbana, excelente ubicación, todos los servicios disponibles.</p>
+        <a href="https://wa.me/4891272470?text=Hola,%20quiero%20más%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="beneficios">
+  <div class="beneficio">
+    <h3>Asesoría profesional</h3>
+    <p>Te acompañamos en todo el proceso</p>
+  </div>
+  <div class="beneficio">
+    <h3>Seguridad jurídica</h3>
+    <p>Operaciones transparentes</p>
+  </div>
+  <div class="beneficio">
+    <h3>Atención personalizada</h3>
+    <p>Soluciones a tu medida</p>
   </div>
 </section>
 
 <section id="contacto">
   <h2 class="section-title">Contacto</h2>
-  <p style="text-align:center;">
-    📞 WhatsApp: <strong>444 491 7754 </strong>
-  </p>
+  <div class="contacto">
+    <form action="https://formspree.io/f/mnqlkzlj" method="POST">
+      <input type="text" name="nombre" placeholder="Nombre" required />
+      <input type="email" name="correo" placeholder="Correo" required />
+      <input type="tel" name="telefono" placeholder="Teléfono" required />
+      <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+    <div>
+      <p><strong>WhatsApp:</strong> 489 127 24 70</p>
+      <p><strong>Email:</strong> contacto@inmo.com</p>
+    </div>
+  </div>
 </section>
 
-<footer style="background:#0b3c5d;color:#fff;text-align:center;padding:1.5rem;">
-  © 2026 INMO | Todos los derechos reservados
+<footer>
+  <p>© 2026 INMO | Todos los derechos reservados</p>
 </footer>
 
-<a
-  href="https://api.whatsapp.com/send?phone=521444917754&text=Hola,%20quiero%20información%20sobre%20sus%20propiedades"
-  class="whatsapp-float"
-  target="_blank">
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/4891272470?text=Hola,%20quiero%20información" class="whatsapp-float" target="_blank">
   💬
 </a>
 
 <script>
-function cambiarImagen(elemento) {
-  document.getElementById("imgPrincipal").src = elemento.src;
-}
+// Buscador funcional
+const form = document.getElementById('formBuscador');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const tipo = document.getElementById('tipo').value;
+  const ubicacion = document.getElementById('ubicacion').value.toLowerCase();
+  const precioMax = document.getElementById('precio').value;
+
+  const cards = document.querySelectorAll('.cards .card');
+  cards.forEach(card => {
+    const cardTipo = card.dataset.tipo;
+    const cardUbicacion = card.dataset.ubicacion.toLowerCase();
+    const cardPrecio = parseInt(card.dataset.precio);
+
+    let mostrar = true;
+    if(tipo && cardTipo !== tipo) mostrar = false;
+    if(ubicacion && !cardUbicacion.includes(ubicacion)) mostrar = false;
+    if(precioMax && cardPrecio > precioMax) mostrar = false;
+
+    card.style.display = mostrar ? 'block' : 'none';
+  });
+});
 </script>
 
 </body>
