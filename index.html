@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
@@ -45,20 +45,49 @@ nav a {
 nav a:hover { color: var(--dorado); }
 
 .hero {
-  background: var(--azul); /* Fondo neutro */
+  position: relative;
+  height: 70vh;
+  background: url('hero-banner.jpg') center/cover no-repeat; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
-  padding: 5rem 2rem;
   text-align: center;
 }
 
-.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-.hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+.hero-overlay {
+  background: rgba(0,0,0,0.5);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.hero .btn {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--rojo);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.hero .btn:hover { background: darkred; }
 
 .buscador {
   background: #fff;
   padding: 1rem;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
@@ -90,7 +119,7 @@ section { padding: 4rem 2rem; scroll-margin-top: 80px; }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -106,14 +135,14 @@ section { padding: 4rem 2rem; scroll-margin-top: 80px; }
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.card img, .slide img { width: 100%; height: 200px; object-fit: cover; }
-
+.card img, .slide img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; }
 .card-content { padding: 1rem; }
 
 .precio {
   color: var(--rojo);
   font-size: 1.2rem;
   font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .btn {
@@ -144,11 +173,7 @@ section { padding: 4rem 2rem; scroll-margin-top: 80px; }
   gap: 2rem;
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 1rem;
-}
+form input, form textarea { width: 100%; padding: 0.7rem; margin-bottom: 1rem; }
 
 form button {
   background: var(--rojo);
@@ -169,7 +194,6 @@ footer {
   margin-top: 3rem;
 }
 
-/* Botón flotante WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -185,25 +209,9 @@ footer {
 }
 .whatsapp-float:hover { background-color: #1ebe5d; }
 
-/* Slider Bodega */
-.slider-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-  min-width: 100%;
-  box-sizing: border-box;
-}
-
+.slider-container { position: relative; width: 100%; overflow: hidden; border-radius: 8px; margin-bottom: 1rem; }
+.slider { display: flex; transition: transform 0.5s ease-in-out; }
+.slide { min-width: 100%; box-sizing: border-box; }
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -217,13 +225,23 @@ footer {
   border-radius: 50%;
   z-index: 10;
 }
-
 .prev:hover, .next:hover { background-color: var(--azul); }
-
 .prev { left: 10px; }
 .next { right: 10px; }
 
-/* Responsive */
+.prop-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+.prop-info span { display: flex; align-items: center; gap: 5px; }
+
+@media (max-width: 768px) {
+  .hero h2 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+}
 @media (max-width: 600px) {
   header { flex-direction: column; text-align: center; }
   nav a { margin: 0.5rem; display: inline-block; }
@@ -237,87 +255,83 @@ footer {
   <nav>
     <a href="#hero">Inicio</a>
     <a href="#propiedades">Propiedades</a>
-    <a href="#terrenos">Terrenos</a>
     <a href="#contacto">Contacto</a>
   </nav>
 </header>
 
 <section class="hero" id="hero">
-  <h2>Encuentra tu próxima propiedad</h2>
-  <p>Terrenos y bienes raíces con respaldo profesional</p>
-  <form class="buscador" id="formBuscador">
-    <select id="tipo">
-      <option value="">Tipo</option>
-      <option value="casa">Casa</option>
-      <option value="terreno">Terreno</option>
-      <option value="bodega">Bodega</option>
-    </select>
-    <input type="text" id="ubicacion" placeholder="Ubicación" />
-    <input type="number" id="precio" placeholder="Precio máximo" />
-    <button type="submit">Buscar</button>
-  </form>
+  <div class="hero-overlay">
+    <h2>Encuentra tu propiedad ideal en S.L.P.</h2>
+    <p>Terrenos, casas y bodegas con respaldo profesional</p>
+    <a href="#propiedades" class="btn">Ver propiedades</a>
+  </div>
 </section>
+
+<form class="buscador" id="formBuscador">
+  <select id="tipo">
+    <option value="">Tipo</option>
+    <option value="casa">Casa</option>
+    <option value="terreno">Terreno</option>
+    <option value="bodega">Bodega</option>
+  </select>
+  <input type="text" id="ubicacion" placeholder="Ubicación" />
+  <input type="number" id="precio" placeholder="Precio máximo" />
+  <button type="submit">Buscar</button>
+</form>
 
 <section id="propiedades">
   <h2 class="section-title">Propiedades en Venta</h2>
   <div class="cards" id="propiedadesCards">
 
-    <!-- Propiedad Matlapa 1 -->
-    <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9000000">
-      <img src="matlapa1.jpg" alt="Terreno Matlapa 1">
+    <!-- Terreno Matlapa -->
+    <div class="card" data-tipo="terreno" data-ubicacion="matlapa" data-precio="9000000">
+      <div class="slider-container">
+        <div class="slider" id="sliderMatlapa">
+          <div class="slide"><img src="matlapa1.jpg" alt="Terreno Matlapa 1"></div>
+          <div class="slide"><img src="matlapa2.jpg" alt="Terreno Matlapa 2"></div>
+        </div>
+        <button class="prev" onclick="moveSlideMatlapa(-1)">❮</button>
+        <button class="next" onclick="moveSlideMatlapa(1)">❯</button>
+      </div>
       <div class="card-content">
         <p class="precio">$9,000,000 MXN</p>
-        <p>
-          Terreno en Matlapa, S.L.P., 2,163.38 m², zona urbana a orilla de Carretera México-Laredo, salida a Tamazunchale, Col. Villa la Lolita. 
-          Cuenta con todos los servicios, escritura pública, 30 m de frente a carretera. 
-          Precio a tratar: $9,000,000 MXN.
-        </p>
-        <a href="https://wa.me/4444917754?text=Hola,%20quiero%20más%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
-      </div>
-    </div>
-
-    <!-- Propiedad Matlapa 2 -->
-    <div class="card" data-tipo="terreno" data-ubicacion="urbana" data-precio="9500000">
-      <img src="matlapa2.jpg" alt="Terreno Matlapa 2">
-      <div class="card-content">
-        <p class="precio">$9,500,000 MXN</p>
-        <p>
-          Terreno adicional en Matlapa, zona urbana, excelente ubicación con todos los servicios disponibles y escritura pública lista para venta.
-        </p>
-        <a href="https://wa.me/4444917754?text=Hola,%20quiero%20más%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
-      </div>
-    </div>
-
-    <!-- Bodega Tamuín con Slider -->
-    <div class="card" data-tipo="bodega" data-ubicacion="centro" data-precio="5900000">
-      <div class="card-content">
-        <h3>Bodega en Tamuín S.L.P.</h3>
-
-        <div class="slider-container">
-          <div class="slider" id="sliderBodega">
-            <div class="slide"><img src="bodegatamuin1.jpg" alt="Bodega Tamuín 1"></div>
-            <div class="slide"><img src="bodegatamuin2.jpg" alt="Bodega Tamuín 2"></div>
-            <div class="slide"><img src="bodegatamuin3.jpg" alt="Bodega Tamuín 3"></div>
-            <div class="slide">
-              <video width="100%" height="auto" controls>
-                <source src="bodegatamuin.mp4" type="video/mp4">
-                Tu navegador no soporta videos.
-              </video>
-            </div>
-          </div>
-          <button class="prev" onclick="moveSlide(-1)">❮</button>
-          <button class="next" onclick="moveSlide(1)">❯</button>
+        <div class="prop-info">
+          <span>📍 Matlapa, S.L.P.</span>
+          <span>📏 2,163 m²</span>
+          <span>✅ Servicios completos</span>
+          <span>🛣️ Frente a Carretera</span>
         </div>
+        <a href="https://wa.me/4444917754?text=Hola,%20quiero%20información%20sobre%20el%20terreno%20de%20Matlapa" class="btn" target="_blank">Más información</a>
+      </div>
+    </div>
 
+    <!-- Bodega Tamuín -->
+    <div class="card" data-tipo="bodega" data-ubicacion="tamuin" data-precio="5900000">
+      <div class="slider-container">
+        <div class="slider" id="sliderBodega">
+          <div class="slide"><img src="bodegatamuin1.jpg" alt="Bodega 1"></div>
+          <div class="slide"><img src="bodegatamuin2.jpg" alt="Bodega 2"></div>
+          <div class="slide"><img src="bodegatamuin3.jpg" alt="Bodega 3"></div>
+          <div class="slide">
+            <video width="100%" height="auto" controls>
+              <source src="bodegatamuin.mp4" type="video/mp4">
+              Tu navegador no soporta videos.
+            </video>
+          </div>
+        </div>
+        <button class="prev" onclick="moveSlideBodega(-1)">❮</button>
+        <button class="next" onclick="moveSlideBodega(1)">❯</button>
+      </div>
+      <div class="card-content">
         <p class="precio">$5,900,000 MXN</p>
-        <p>
-          Gran Bodega en el centro de Tamuín S.L.P.  
-          Cuenta con 2 entradas por 2 calles: principal Calle Jarrilla y trasera sobre Calle Infonavit. 
-          Terreno: 1,600 m², Construcción: 600 m² aprox. 
-          Amplia oficina y departamento de 3 recámaras, sala-comedor y cocina en la parte superior. 
-          Todos los servicios disponibles, pavimentación por ambas calles. Se vende solo el terreno.
-        </p>
-        <a href="https://wa.me/4444917754?text=Hola,%20quiero%20más%20información%20sobre%20la%20bodega%20en%20Tamuín" class="btn" target="_blank">Más información</a>
+        <div class="prop-info">
+          <span>📍 Tamuín, S.L.P.</span>
+          <span>📏 Terreno 1,600 m²</span>
+          <span>🏢 Construcción 600 m²</span>
+          <span>🏠 Departamento 3 recámaras</span>
+          <span>✅ Todos los servicios</span>
+        </div>
+        <a href="https://wa.me/4444917754?text=Hola,%20quiero%20información%20sobre%20la%20bodega%20en%20Tamuín" class="btn" target="_blank">Más información</a>
       </div>
     </div>
 
@@ -360,10 +374,7 @@ footer {
   <p>© 2026 INMO | Todos los derechos reservados</p>
 </footer>
 
-<!-- Botón flotante de WhatsApp -->
-<a href="https://wa.me/4444917754?text=Hola,%20quiero%20información" class="whatsapp-float" target="_blank">
-  💬
-</a>
+<a href="https://wa.me/4444917754?text=Hola,%20quiero%20información" class="whatsapp-float" target="_blank">💬</a>
 
 <script>
 // Buscador funcional
@@ -389,25 +400,31 @@ form.addEventListener('submit', function(e) {
   });
 });
 
+// Slider Matlapa
+let slideIndexMatlapa = 0;
+const sliderMatlapa = document.getElementById('sliderMatlapa');
+const totalSlidesMatlapa = sliderMatlapa.children.length;
+function showSlideMatlapa(index) {
+  if(index >= totalSlidesMatlapa) slideIndexMatlapa = 0;
+  else if(index < 0) slideIndexMatlapa = totalSlidesMatlapa - 1;
+  else slideIndexMatlapa = index;
+  sliderMatlapa.style.transform = `translateX(-${slideIndexMatlapa * 100}%)`;
+}
+function moveSlideMatlapa(step) { showSlideMatlapa(slideIndexMatlapa + step); }
+setInterval(() => moveSlideMatlapa(1), 5000);
+
 // Slider Bodega
-let slideIndex = 0;
-const slider = document.getElementById('sliderBodega');
-const totalSlides = slider.children.length;
-
-function showSlide(index) {
-  if(index >= totalSlides) slideIndex = 0;
-  else if(index < 0) slideIndex = totalSlides - 1;
-  else slideIndex = index;
-
-  slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+let slideIndexBodega = 0;
+const sliderBodega = document.getElementById('sliderBodega');
+const totalSlidesBodega = sliderBodega.children.length;
+function showSlideBodega(index) {
+  if(index >= totalSlidesBodega) slideIndexBodega = 0;
+  else if(index < 0) slideIndexBodega = totalSlidesBodega - 1;
+  else slideIndexBodega = index;
+  sliderBodega.style.transform = `translateX(-${slideIndexBodega * 100}%)`;
 }
-
-function moveSlide(step) {
-  showSlide(slideIndex + step);
-}
-
-// Autoplay cada 5 segundos
-setInterval(() => moveSlide(1), 5000);
+function moveSlideBodega(step) { showSlideBodega(slideIndexBodega + step); }
+setInterval(() => moveSlideBodega(1), 5000);
 </script>
 
 </body>
