@@ -65,7 +65,7 @@ imagenes:[
 "axtla5.jpg",
 "axtla6.jpg",
 "axtla7.jpg",
-"axtla8.jpg",
+"axtla8.jpg"
 
 ],
 ],
