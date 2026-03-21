@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin INMO</title>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+</head>
+
+<body>
+
+<h1>Panel Admin</h1>
+
+<input id="email" placeholder="Correo">
+<input id="password" type="password" placeholder="Contraseña">
+<button onclick="login()">Login</button>
+
+<hr>
+
+<input id="nombre" placeholder="Nombre">
+<input id="precio" placeholder="Precio">
+<input id="ubicacion" placeholder="Ubicación">
+<input id="terreno" placeholder="Terreno">
+<input type="file" id="imagen">
+
+<button onclick="subir()">Guardar</button>
+
+<script src="app.js"></script>
+
+</body>
+</html>
