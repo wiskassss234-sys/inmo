@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INMO | Propiedades Premium</title>
+<title>Mi Dulce Hogar | Inmobiliaria</title>
 
 <style>
 :root{
   --azul:#0b3c5d;
   --dorado:#c9a227;
+  --rojo:#e63946;
 }
 
 /* GENERAL */
@@ -19,15 +20,46 @@ body{
 }
 
 /* HEADER */
-header{
+.header{
   background:rgba(11,60,93,0.95);
   color:#fff;
-  padding:1rem;
-  text-align:center;
+  padding:0.8rem 1.5rem;
   backdrop-filter: blur(10px);
   position:sticky;
   top:0;
   z-index:1000;
+}
+
+.logo-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* LOGO */
+.logo{
+  width:60px;
+  height:60px;
+  object-fit:cover;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* TEXTO */
+.header h1{
+  font-size:1.3rem;
+  margin:0;
+}
+
+.sub{
+  font-size:0.8rem;
+  color:#ccc;
 }
 
 /* HERO */
@@ -50,7 +82,7 @@ header{
   margin-bottom:1rem;
 }
 
-/* GLASS BOX */
+/* GLASS */
 .glass{
   background:rgba(255,255,255,0.1);
   backdrop-filter:blur(12px);
@@ -59,18 +91,10 @@ header{
   display:inline-block;
 }
 
-/* BUSCADOR */
-.buscador{
+/* INPUTS */
+.buscador, select{
   padding:12px;
   width:250px;
-  border-radius:10px;
-  border:none;
-  margin:5px;
-}
-
-/* FILTROS */
-select{
-  padding:10px;
   border-radius:10px;
   border:none;
   margin:5px;
@@ -89,7 +113,10 @@ select{
   border-radius:15px;
   overflow:hidden;
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  transition:0.4s;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeIn 0.5s forwards;
 }
 
 .card:hover{
@@ -97,7 +124,14 @@ select{
   box-shadow:0 15px 35px rgba(0,0,0,0.3);
 }
 
-/* IMAGEN */
+@keyframes fadeIn{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* IMG */
 .card img{
   width:100%;
   height:220px;
@@ -112,7 +146,7 @@ select{
 .precio{
   color:var(--rojo);
   font-weight:bold;
-  font-size:1.3rem;
+  font-size:1.5rem;
 }
 
 /* BOTON */
@@ -125,7 +159,6 @@ select{
   border-radius:10px;
   text-decoration:none;
   margin-top:10px;
-  transition:0.3s;
 }
 
 .btn:hover{
@@ -136,8 +169,16 @@ select{
 
 <body>
 
-<header>
-<h1>INMO</h1>
+<header class="header">
+  <div class="logo-container">
+    <div class="logo-box">
+      <img src="logo.png" alt="Logo" class="logo">
+      <div>
+        <h1>Mi Dulce Hogar</h1>
+        <span class="sub">Inmobiliaria</span>
+      </div>
+    </div>
+  </div>
 </header>
 
 <section class="hero">
@@ -159,9 +200,28 @@ select{
 <div class="cards" id="contenedor"></div>
 </section>
 
-<script src="propiedades.js"></script>
-
 <script>
+const propiedades = [
+  {
+    nombre: "Terreno en Venta",
+    ubicacion: "San Luis Potosí",
+    precio: "$1,400,000",
+    terreno: "200 m²",
+    tipo: "terreno",
+    imagenes: ["https://via.placeholder.com/400"],
+    whatsapp: "Hola, quiero información sobre el terreno"
+  },
+  {
+    nombre: "Bodega Industrial",
+    ubicacion: "Zona Industrial",
+    precio: "$2,800,000",
+    terreno: "500 m²",
+    tipo: "bodega",
+    imagenes: ["https://via.placeholder.com/400"],
+    whatsapp: "Hola, quiero información sobre la bodega"
+  }
+];
+
 const contenedor = document.getElementById("contenedor");
 const buscador = document.getElementById("buscador");
 const tipo = document.getElementById("tipo");
@@ -169,16 +229,22 @@ const tipo = document.getElementById("tipo");
 function mostrar(lista){
   contenedor.innerHTML = "";
 
+  if(lista.length === 0){
+    contenedor.innerHTML = "<p style='text-align:center;'>No se encontraron propiedades</p>";
+    return;
+  }
+
   lista.forEach(p => {
     contenedor.innerHTML += `
       <div class="card">
-        <img src="${p.imagenes[0]}">
+        <img src="${p.imagenes[0] || 'https://via.placeholder.com/400'}">
         <div class="card-content">
           <p class="precio">${p.precio}</p>
           <p><strong>${p.nombre}</strong></p>
           <p>${p.ubicacion}</p>
           <p>${p.terreno}</p>
-          <a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Más info</a>
+          <a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" 
+             class="btn" target="_blank">Más info</a>
         </div>
       </div>
     `;
