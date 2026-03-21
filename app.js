@@ -1,11 +1,4 @@
-// 🔥 PEGA AQUÍ TU CONFIG DE FIREBASE
-const firebaseConfig = {
-  // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
+// 🔥 CONFIG CORRECTO
 const firebaseConfig = {
   apiKey: "AIzaSyASWE6DeHUb20icz9a7GmUMScBBfcZy-i0",
   authDomain: "inmo-13a1e.firebaseapp.com",
@@ -15,10 +8,7 @@ const firebaseConfig = {
   appId: "1:668202549196:web:f50909d50bc1e6b7e8a769"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-};
-
+// 🔥 INICIALIZAR
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
@@ -49,7 +39,7 @@ async function subir(){
     imagen: url
   });
 
-  alert("Guardado");
+  alert("Guardado 🔥");
 }
 
 // 🌐 MOSTRAR EN INDEX
