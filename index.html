@@ -12,291 +12,39 @@
   --gris:#f4f4f4;
 }
 
-body{
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background:var(--gris);
-}
+body{margin:0;font-family:'Segoe UI';background:var(--gris);}
 
 /* TOPBAR */
 .topbar{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:5px;
-  font-size:0.9rem;
+  background:#000;color:#fff;text-align:center;padding:5px;
 }
 
 /* HEADER */
 header{
   background:var(--azul);
   color:#fff;
-  padding:1rem 2rem;
   display:flex;
   justify-content:space-between;
+  padding:1rem;
   align-items:center;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
+.logo{display:flex;align-items:center;gap:10px;}
 .logo img{height:45px;}
 
-nav a{
-  margin:0 10px;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-}
-
+nav a{color:#fff;margin:0 10px;text-decoration:none;}
 nav a:hover{color:var(--dorado);}
 
 .btn-header{
   background:var(--dorado);
-  color:#000;
-  padding:8px 15px;
+  padding:8px 12px;
   border-radius:8px;
+  color:#000;
   text-decoration:none;
-  font-weight:bold;
 }
 
 /* HERO */
 .hero{
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('matlapa1.jpg') center/cover;
+  background:url('matlapa1.jpg') center/cover;
   color:#fff;
-  text-align:center;
-  padding:5rem 2rem;
-}
-
-.hero h2{font-size:2.5rem;}
-
-.buscador{
-  margin-top:15px;
-  padding:10px;
-  width:250px;
-  border-radius:8px;
-  border:none;
-}
-
-/* GRID */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:25px;
-  padding:2rem;
-}
-
-/* CARD */
-.card{
-  background:#fff;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  transition:0.3s;
-}
-
-.card:hover{transform:translateY(-5px);}
-
-/* SLIDER */
-.slider-container{
-  position:relative;
-  height:230px;
-  overflow:hidden;
-}
-
-.slider{
-  display:flex;
-  transition:0.5s;
-}
-
-.slide img{
-  width:100%;
-  height:230px;
-  object-fit:cover;
-}
-
-.prev,.next{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.6);
-  color:#fff;
-  border:none;
-  padding:10px;
-  cursor:pointer;
-  border-radius:50%;
-}
-
-.prev{left:10px;}
-.next{right:10px;}
-
-/* CONTENIDO */
-.card-content{padding:1rem;}
-
-.precio{
-  color:#b11226;
-  font-size:1.4rem;
-  font-weight:bold;
-}
-
-.prop-info span{
-  display:inline-block;
-  background:#eee;
-  padding:5px 10px;
-  border-radius:8px;
-  margin:3px;
-  font-size:0.9rem;
-}
-
-/* BOTÓN */
-.btn{
-  display:block;
-  margin-top:10px;
-  text-align:center;
-  background:var(--azul);
-  color:#fff;
-  padding:10px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-.btn:hover{
-  background:var(--dorado);
-  color:#000;
-}
-
-/* WHATSAPP */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:#fff;
-  padding:15px;
-  border-radius:50%;
-  text-decoration:none;
-  font-size:20px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="topbar">
-  📞 444 491 7754 | ✉️ contacto@inmo.com
-</div>
-
-<header>
-  <div class="logo">
-    <img src="logo.png">
-    <h1>INMO</h1>
-  </div>
-
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#propiedades">Propiedades</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
-
-  <a href="https://wa.me/4444917754" class="btn-header">Contactar</a>
-</header>
-
-<section class="hero">
-  <h2>Encuentra tu propiedad ideal</h2>
-  <p>Terrenos, casas y bodegas en S.L.P.</p>
-  <input type="text" id="buscador" placeholder="Buscar propiedad..." class="buscador">
-</section>
-
-<section id="propiedades">
-  <div class="cards" id="contenedorPropiedades"></div>
-</section>
-
-<a href="https://wa.me/4444917754" class="whatsapp">💬</a>
-
-<script src="propiedades.js"></script>
-
-<script>
-const contenedor = document.getElementById("contenedorPropiedades");
-const buscador = document.getElementById("buscador");
-
-function mostrarPropiedades(lista){
-
-  contenedor.innerHTML = "";
-
-  lista.forEach((prop, i) => {
-
-    let sliderId = "slider" + i;
-
-    let imagenes = prop.imagenes.map(img => `
-      <div class="slide"><img src="${img}"></div>
-    `).join("");
-
-    let extras = prop.extra.map(e => `<span>✅ ${e}</span>`).join("");
-
-    contenedor.innerHTML += `
-    <div class="card">
-      <div class="slider-container">
-        <div class="slider" id="${sliderId}">
-          ${imagenes}
-        </div>
-        <button class="prev" onclick="moveSlide('${sliderId}', -1)">❮</button>
-        <button class="next" onclick="moveSlide('${sliderId}', 1)">❯</button>
-      </div>
-
-      <div class="card-content">
-        <p class="precio">${prop.precio}</p>
-        <div class="prop-info">
-          <span>📍 ${prop.ubicacion}</span>
-          <span>📏 ${prop.terreno}</span>
-          ${prop.construccion ? `<span>🏢 ${prop.construccion}</span>` : ""}
-          ${extras}
-        </div>
-        <a href="https://wa.me/4444917754?text=${encodeURIComponent(prop.whatsapp)}" class="btn" target="_blank">
-          💬 Más información
-        </a>
-      </div>
-    </div>
-    `;
-  });
-}
-
-// Mostrar todas
-mostrarPropiedades(propiedades);
-
-// 🔍 BUSCADOR FUNCIONAL
-buscador.addEventListener("input", () => {
-
-  let texto = buscador.value.toLowerCase();
-
-  let filtradas = propiedades.filter(p =>
-    p.nombre.toLowerCase().includes(texto) ||
-    p.ubicacion.toLowerCase().includes(texto) ||
-    p.precio.toLowerCase().includes(texto)
-  );
-
-  mostrarPropiedades(filtradas);
-});
-
-// SLIDER
-let sliders = {};
-
-function moveSlide(id, step){
-  let slider = document.getElementById(id);
-
-  if(!sliders[id]) sliders[id] = 0;
-
-  sliders[id] += step;
-
-  if(sliders[id] >= slider.children.length) sliders[id] = 0;
-  if(sliders[id] < 0) sliders[id] = slider.children.length - 1;
-
-  slider.style.transform = `translateX(-${sliders[id]*100}%)`;
-}
-</script>
-
-</body>
-</html>
+  text-align
