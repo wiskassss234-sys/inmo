@@ -20,28 +20,25 @@ terreno:"1,600 m²",
 extra:["Departamento","Servicios"],
 imagenes:["bodegatamuin1.jpg","bodegatamuin2.jpg"],
 whatsapp:"Hola quiero info de la bodega Tamuín"
-}
-
-
+},
 {
-  nombre:"Casa en ejido palomas",
-  ubicacion: "Calle justo sierra S/N,CD del maíz,SLP",
-  precio: "$1,200,000",
-  terreno: "1130 m²",
-  tipo: "Casa",
+nombre:"Casa en Ejido Palomas",
+tipo:"casa",
+precio:"$1,200,000",
+ubicacion:"Calle Justo Sierra S/N, Cd del Maíz, S.L.P.",
+terreno:"1130 m²",
 
-  imagenes: [
-    "img/casacdmaiz1.jpg",
-    "img/casacdmaiz2.jpg"
-"img/casacdmaiz3.jpg" 
-"img/casacdmaiz4.jpg"
- "img/casacdmaiz5.jpg" 
-"img/casacdmaiz6.jpg" 
-"img/casacdmaiz7.jpg" 
-"img/casacdmaiz8.jpg" 
-  ],
+imagenes:[
+"img/casacdmaiz1.jpg",
+"img/casacdmaiz2.jpg",
+"img/casacdmaiz3.jpg",
+"img/casacdmaiz4.jpg",
+"img/casacdmaiz5.jpg",
+"img/casacdmaiz6.jpg",
+"img/casacdmaiz7.jpg",
+"img/casacdmaiz8.jpg"
+],
 
-  whatsapp: "Hola, quiero información sobre la bodega"
-
+whatsapp:"Hola, quiero información sobre la casa en Ejido Palomas"
 }
 ];
