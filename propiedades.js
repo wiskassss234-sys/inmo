@@ -21,4 +21,23 @@ extra:["Departamento","Servicios"],
 imagenes:["bodegatamuin1.jpg","bodegatamuin2.jpg"],
 whatsapp:"Hola quiero info de la bodega Tamuín"
 }
+
+
+{
+  nombre:"Casa en ejido palomas",
+  ubicacion: "Calle justo sierra S/N,CD del maíz,SLP",
+  precio: "$1,200,000",
+  terreno: "1130 m²",
+  tipo: "Casa",
+
+  imagenes: [
+    "img/casacdmaiz1.jpg",
+    "img/casacdmaiz2.jpg"
+"img/casacdmaiz3.jpg" 
+
+  ],
+
+  whatsapp: "Hola, quiero información sobre la bodega"
+
+}
 ];
