@@ -3,12 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INMO PRO</title>
-<link rel="stylesheet" href="styles.css">
+<title>INMO | Venta de Propiedades</title>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<style>
+body { font-family: Arial; margin:0; background:#f4f4f4; }
+
+header {
+  background:#0b3c5d;
+  color:#fff;
+  padding:1rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header img { height:50px; }
+
+.hero {
+  background:#0b3c5d;
+  color:#fff;
+  text-align:center;
+  padding:3rem;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.card {
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.slider-container {
+  position:relative;
+  overflow:hidden;
+  height:220px;
+}
+
+.slider {
+  display:flex;
+  transition:0.5s;
+}
+
+.slide img {
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+button {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+}
+
+button:first-of-type { left:10px; }
+button:last-of-type { right:10px; }
+
+.card-content { padding:10px; }
+
+.precio { color:red; font-weight:bold; }
+
+.prop-info span {
+  display:inline-block;
+  background:#eee;
+  margin:3px;
+  padding:5px 10px;
+  border-radius:6px;
+}
+</style>
 
 </head>
 
@@ -19,14 +93,67 @@
 </header>
 
 <section class="hero">
-  <h2>Propiedades disponibles</h2>
+  <h2>Encuentra tu propiedad ideal</h2>
 </section>
 
 <section>
-  <div id="contenedor"></div>
+  <div class="cards" id="contenedorPropiedades"></div>
 </section>
 
-<script src="app.js"></script>
+<!-- 🔥 CARGA LAS PROPIEDADES -->
+<script src="propiedades.js"></script>
+
+<script>
+const contenedor = document.getElementById("contenedorPropiedades");
+
+propiedades.forEach((prop, i) => {
+
+  let sliderId = "slider" + i;
+
+  let imagenes = prop.imagenes.map(img => `
+    <div class="slide"><img src="${img}"></div>
+  `).join("");
+
+  let extras = prop.extra.map(e => `<span>✅ ${e}</span>`).join("");
+
+  contenedor.innerHTML += `
+  <div class="card">
+    <div class="slider-container">
+      <div class="slider" id="${sliderId}">
+        ${imagenes}
+      </div>
+      <button onclick="moveSlide('${sliderId}', -1)">❮</button>
+      <button onclick="moveSlide('${sliderId}', 1)">❯</button>
+    </div>
+
+    <div class="card-content">
+      <p class="precio">${prop.precio}</p>
+      <div class="prop-info">
+        <span>📍 ${prop.ubicacion}</span>
+        <span>📏 ${prop.terreno}</span>
+        ${prop.construccion ? `<span>🏢 ${prop.construccion}</span>` : ""}
+        ${extras}
+      </div>
+    </div>
+  </div>
+  `;
+});
+
+let sliders = {};
+
+function moveSlide(id, step){
+  let slider = document.getElementById(id);
+
+  if(!sliders[id]) sliders[id] = 0;
+
+  sliders[id] += step;
+
+  if(sliders[id] >= slider.children.length) sliders[id] = 0;
+  if(sliders[id] < 0) sliders[id] = slider.children.length - 1;
+
+  slider.style.transform = `translateX(-${sliders[id]*100}%)`;
+}
+</script>
 
 </body>
 </html>
