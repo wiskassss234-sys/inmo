@@ -23,45 +23,8 @@ body{
 .header{
   background:rgba(11,60,93,0.95);
   color:#fff;
-  padding:0.8rem 1.5rem;
-  backdrop-filter: blur(10px);
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-
-.logo-container{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.logo-box{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-/* LOGO (AJUSTADO PARA JPG OSCURO) */
-.logo{
-  width:60px;
-  height:60px;
-  object-fit:contain;
-  border-radius:12px;
-  background:#fff;
-  padding:5px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-/* TEXTO */
-.header h1{
-  font-size:1.3rem;
-  margin:0;
-}
-
-.sub{
-  font-size:0.8rem;
-  color:#ccc;
+  padding:0.8rem;
+  text-align:center;
 }
 
 /* HERO */
@@ -71,29 +34,9 @@ body{
   color:#fff;
   text-align:center;
   padding:5rem 2rem;
-  animation: zoom 20s infinite alternate;
 }
 
-@keyframes zoom{
-  from{background-size:100%;}
-  to{background-size:110%;}
-}
-
-.hero h2{
-  font-size:2.5rem;
-  margin-bottom:1rem;
-}
-
-/* GLASS */
-.glass{
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(12px);
-  padding:20px;
-  border-radius:15px;
-  display:inline-block;
-}
-
-/* INPUTS */
+/* BUSCADOR */
 .buscador, select{
   padding:12px;
   width:250px;
@@ -115,30 +58,44 @@ body{
   border-radius:15px;
   overflow:hidden;
   box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeIn 0.5s forwards;
 }
 
-.card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 15px 35px rgba(0,0,0,0.3);
-}
-
-@keyframes fadeIn{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-/* IMG */
-.card img{
+/* SLIDER */
+.slider{
+  position:relative;
   width:100%;
   height:220px;
-  object-fit:cover;
+  overflow:hidden;
 }
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+/* BOTONES */
+.prev, .next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  border:none;
+  padding:8px 12px;
+  cursor:pointer;
+  border-radius:8px;
+}
+
+.prev{ left:10px; }
+.next{ right:10px; }
 
 /* CONTENIDO */
 .card-content{
@@ -151,7 +108,6 @@ body{
   font-size:1.5rem;
 }
 
-/* BOTON */
 .btn{
   display:block;
   background:linear-gradient(45deg,var(--azul),var(--dorado));
@@ -162,31 +118,18 @@ body{
   text-decoration:none;
   margin-top:10px;
 }
-
-.btn:hover{
-  opacity:0.85;
-}
 </style>
 </head>
 
 <body>
 
 <header class="header">
-  <div class="logo-container">
-    <div class="logo-box">
-      <img src="logo.jpg" alt="Logo" class="logo">
-      <div>
-        <h1>Mi Dulce Hogar</h1>
-        <span class="sub">Inmobiliaria</span>
-      </div>
-    </div>
-  </div>
+  <h1>Mi Dulce Hogar</h1>
 </header>
 
 <section class="hero">
 <h2>Encuentra tu propiedad ideal</h2>
 
-<div class="glass">
 <input id="buscador" class="buscador" placeholder="Buscar propiedad...">
 
 <select id="tipo">
@@ -194,14 +137,12 @@ body{
 <option value="terreno">Terreno</option>
 <option value="bodega">Bodega</option>
 </select>
-</div>
 </section>
 
 <section>
 <div class="cards" id="contenedor"></div>
 </section>
 
-<!-- USA TUS DATOS REALES -->
 <script src="propiedades.js"></script>
 
 <script>
@@ -212,21 +153,25 @@ const tipo = document.getElementById("tipo");
 function mostrar(lista){
   contenedor.innerHTML = "";
 
-  if(lista.length === 0){
-    contenedor.innerHTML = "<p style='text-align:center;'>No se encontraron propiedades</p>";
-    return;
-  }
-
   lista.forEach(p => {
     contenedor.innerHTML += `
       <div class="card">
-        <img src="${(p.imagenes && p.imagenes[0]) || p.imagen || 'https://via.placeholder.com/400'}">
+        
+        <div class="slider">
+          ${(p.imagenes || [p.imagen]).map((img,i)=>`
+            <img src="${img}" class="slide ${i===0 ? 'active' : ''}">
+          `).join('')}
+
+          <button class="prev">‹</button>
+          <button class="next">›</button>
+        </div>
+
         <div class="card-content">
-          <p class="precio">${p.precio || 'Sin precio'}</p>
-          <p><strong>${p.nombre || 'Sin nombre'}</strong></p>
-          <p>${p.ubicacion || ''}</p>
-          <p>${p.terreno || ''}</p>
-          <a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp || 'Quiero información')}" 
+          <p class="precio">${p.precio}</p>
+          <p><strong>${p.nombre}</strong></p>
+          <p>${p.ubicacion}</p>
+          <p>${p.terreno}</p>
+          <a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" 
              class="btn" target="_blank">Más info</a>
         </div>
       </div>
@@ -255,6 +200,26 @@ buscador.addEventListener("input", filtrar);
 tipo.addEventListener("change", filtrar);
 
 mostrar(propiedades);
+
+/* FUNCION SLIDER */
+document.addEventListener("click", function(e){
+  if(e.target.classList.contains("next") || e.target.classList.contains("prev")){
+    
+    const slider = e.target.closest(".slider");
+    const slides = slider.querySelectorAll(".slide");
+    let index = Array.from(slides).findIndex(s => s.classList.contains("active"));
+
+    slides[index].classList.remove("active");
+
+    if(e.target.classList.contains("next")){
+      index = (index + 1) % slides.length;
+    } else {
+      index = (index - 1 + slides.length) % slides.length;
+    }
+
+    slides[index].classList.add("active");
+  }
+});
 </script>
 
 </body>
