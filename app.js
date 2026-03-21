@@ -1,11 +1,22 @@
 // 🔥 PEGA AQUÍ TU CONFIG DE FIREBASE
 const firebaseConfig = {
-  apiKey: "AQUI",
-  authDomain: "AQUI",
-  projectId: "AQUI",
-  storageBucket: "AQUI",
-  messagingSenderId: "AQUI",
-  appId: "AQUI"
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyASWE6DeHUb20icz9a7GmUMScBBfcZy-i0",
+  authDomain: "inmo-13a1e.firebaseapp.com",
+  projectId: "inmo-13a1e",
+  storageBucket: "inmo-13a1e.firebasestorage.app",
+  messagingSenderId: "668202549196",
+  appId: "1:668202549196:web:f50909d50bc1e6b7e8a769"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 };
 
 firebase.initializeApp(firebaseConfig);
