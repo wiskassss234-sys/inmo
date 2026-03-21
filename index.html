@@ -47,4 +47,227 @@ nav a:hover{color:var(--dorado);}
 .hero{
   background:url('matlapa1.jpg') center/cover;
   color:#fff;
-  text-align
+  text-align:center;
+  padding:5rem 2rem;
+}
+
+.buscador{
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+  border:none;
+}
+
+/* FILTROS */
+.filtros{
+  margin-top:10px;
+}
+
+.filtros select{
+  padding:10px;
+  border-radius:8px;
+  margin:5px;
+}
+
+/* GRID */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.slider-container{position:relative;height:200px;overflow:hidden;}
+.slider{display:flex;transition:0.5s;}
+
+.slide img{width:100%;height:200px;object-fit:cover;}
+
+.prev,.next{
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;border:none;padding:8px;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.card-content{padding:10px;}
+
+.precio{color:red;font-weight:bold;}
+
+.prop-info span{
+  background:#eee;
+  margin:3px;
+  padding:5px;
+  display:inline-block;
+  border-radius:6px;
+}
+
+/* BOTON */
+.btn{
+  display:block;
+  background:var(--azul);
+  color:#fff;
+  text-align:center;
+  padding:10px;
+  border-radius:8px;
+  text-decoration:none;
+  margin-top:10px;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+📞 444 491 7754 | contacto@inmo.com
+</div>
+
+<header>
+<div class="logo">
+<img src="logo.png">
+<h1>INMO</h1>
+</div>
+
+<nav>
+<a href="#">Inicio</a>
+<a href="#propiedades">Propiedades</a>
+</nav>
+
+<a href="https://wa.me/4444917754" class="btn-header">Contactar</a>
+</header>
+
+<section class="hero">
+<h2>Encuentra tu propiedad ideal</h2>
+
+<input type="text" id="buscador" placeholder="Buscar..." class="buscador">
+
+<div class="filtros">
+<select id="filtroTipo">
+<option value="">Tipo</option>
+<option value="terreno">Terreno</option>
+<option value="bodega">Bodega</option>
+</select>
+
+<select id="filtroPrecio">
+<option value="">Precio</option>
+<option value="1">Menos de 1M</option>
+<option value="5">Menos de 5M</option>
+<option value="10">Menos de 10M</option>
+</select>
+</div>
+</section>
+
+<section id="propiedades">
+<div class="cards" id="contenedorPropiedades"></div>
+</section>
+
+<a href="https://wa.me/4444917754" class="whatsapp">💬</a>
+
+<script src="propiedades.js"></script>
+
+<script>
+const contenedor = document.getElementById("contenedorPropiedades");
+const buscador = document.getElementById("buscador");
+const filtroTipo = document.getElementById("filtroTipo");
+const filtroPrecio = document.getElementById("filtroPrecio");
+
+function mostrar(lista){
+contenedor.innerHTML="";
+
+lista.forEach((p,i)=>{
+
+let sliderId="slider"+i;
+
+let imgs=p.imagenes.map(img=>`
+<div class="slide"><img src="${img}"></div>
+`).join("");
+
+let extras=p.extra.map(e=>`<span>✅ ${e}</span>`).join("");
+
+contenedor.innerHTML+=`
+<div class="card">
+<div class="slider-container">
+<div class="slider" id="${sliderId}">
+${imgs}
+</div>
+<button class="prev" onclick="move('${sliderId}',-1)">❮</button>
+<button class="next" onclick="move('${sliderId}',1)">❯</button>
+</div>
+
+<div class="card-content">
+<p class="precio">${p.precio}</p>
+<div class="prop-info">
+<span>${p.ubicacion}</span>
+<span>${p.terreno}</span>
+${extras}
+</div>
+<a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Info</a>
+</div>
+</div>
+`;
+});
+}
+
+function filtrar(){
+let texto=buscador.value.toLowerCase();
+let tipo=filtroTipo.value;
+let precio=filtroPrecio.value;
+
+let filtradas=propiedades.filter(p=>{
+let t=p.nombre.toLowerCase().includes(texto);
+let ti=tipo?p.tipo===tipo:true;
+
+let pr=true;
+if(precio=="1") pr=p.precioNum<1000000;
+if(precio=="5") pr=p.precioNum<5000000;
+if(precio=="10") pr=p.precioNum<10000000;
+
+return t && ti && pr;
+});
+
+mostrar(filtradas);
+}
+
+buscador.addEventListener("input",filtrar);
+filtroTipo.addEventListener("change",filtrar);
+filtroPrecio.addEventListener("change",filtrar);
+
+mostrar(propiedades);
+
+let sliders={};
+
+function move(id,step){
+let s=document.getElementById(id);
+if(!sliders[id]) sliders[id]=0;
+sliders[id]+=step;
+
+if(sliders[id]>=s.children.length) sliders[id]=0;
+if(sliders[id]<0) sliders[id]=s.children.length-1;
+
+s.style.transform=`translateX(-${sliders[id]*100}%)`;
+}
+</script>
+
+</body>
+</html>
