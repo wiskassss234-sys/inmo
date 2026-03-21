@@ -41,4 +41,37 @@ imagenes:[
 
 whatsapp:"Hola, quiero información sobre la casa en Ejido Palomas"
 }
+
+{
+nombre:"Casa en Axtla de Terrazas",
+tipo:"casa",
+precio:"$720,000",
+precioNum:720000,
+ubicacion:"Fraccionamiento Santa María 2da/3ra Sección, Axtla de Terrazas, S.L.P. (cerca del Hospital Santa Catarina)",
+
+terreno:"90 m² (15m x 6m)",
+
+extra:[
+"Construcción completa",
+"Planta baja: 1 recámara, sala, cocina, baño",
+"Planta alta: 2 recámaras, medio baño (inconcluso)"
+],
+
+imagenes:[
+"axtla1.jpg",
+"axtla2.jpg",
+"axtla3.jpg", 
+"axtla4.jpg",
+"axtla5.jpg",
+"axtla6.jpg",
+"axtla7.jpg",
+"axtla8.jpg",
+
+],
+],
+
+
+whatsapp:"Hola, quiero información sobre la casa en Axtla de Terrazas de $720,000"
+}
+
 ];
