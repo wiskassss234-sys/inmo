@@ -34,7 +34,11 @@ whatsapp:"Hola quiero info de la bodega Tamuín"
     "img/casacdmaiz1.jpg",
     "img/casacdmaiz2.jpg"
 "img/casacdmaiz3.jpg" 
-
+"img/casacdmaiz4.jpg"
+ "img/casacdmaiz5.jpg" 
+"img/casacdmaiz6.jpg" 
+"img/casacdmaiz7.jpg" 
+"img/casacdmaiz8.jpg" 
   ],
 
   whatsapp: "Hola, quiero información sobre la bodega"
