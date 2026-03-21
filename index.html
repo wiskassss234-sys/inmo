@@ -187,86 +187,52 @@ nav a:hover{color:var(--dorado);}
 <script src="propiedades.js"></script>
 
 <script>
-const contenedor = document.getElementById("contenedorPropiedades");
+const contenedor = document.getElementById("contenedor");
 const buscador = document.getElementById("buscador");
-const filtroTipo = document.getElementById("filtroTipo");
-const filtroPrecio = document.getElementById("filtroPrecio");
+const tipo = document.getElementById("tipo");
 
 function mostrar(lista){
-contenedor.innerHTML="";
+  contenedor.innerHTML = "";
 
-lista.forEach((p,i)=>{
-
-let sliderId="slider"+i;
-
-let imgs=p.imagenes.map(img=>`
-<div class="slide"><img src="${img}"></div>
-`).join("");
-
-let extras=p.extra.map(e=>`<span>✅ ${e}</span>`).join("");
-
-contenedor.innerHTML+=`
-<div class="card">
-<div class="slider-container">
-<div class="slider" id="${sliderId}">
-${imgs}
-</div>
-<button class="prev" onclick="move('${sliderId}',-1)">❮</button>
-<button class="next" onclick="move('${sliderId}',1)">❯</button>
-</div>
-
-<div class="card-content">
-<p class="precio">${p.precio}</p>
-<div class="prop-info">
-<span>${p.ubicacion}</span>
-<span>${p.terreno}</span>
-${extras}
-</div>
-<a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Info</a>
-</div>
-</div>
-`;
-});
+  lista.forEach(p => {
+    contenedor.innerHTML += `
+      <div class="card">
+        <img src="${p.imagenes[0]}" style="width:100%;height:200px;object-fit:cover;">
+        <div class="card-content">
+          <p class="precio">${p.precio}</p>
+          <p>${p.nombre}</p>
+          <p>${p.ubicacion}</p>
+          <p>${p.terreno}</p>
+        </div>
+      </div>
+    `;
+  });
 }
 
 function filtrar(){
-let texto=buscador.value.toLowerCase();
-let tipo=filtroTipo.value;
-let precio=filtroPrecio.value;
+  let texto = buscador.value.toLowerCase();
+  let tipoSeleccionado = tipo.value;
 
-let filtradas=propiedades.filter(p=>{
-let t=p.nombre.toLowerCase().includes(texto);
-let ti=tipo?p.tipo===tipo:true;
+  let filtradas = propiedades.filter(p => {
 
-let pr=true;
-if(precio=="1") pr=p.precioNum<1000000;
-if(precio=="5") pr=p.precioNum<5000000;
-if(precio=="10") pr=p.precioNum<10000000;
+    let coincideTexto =
+      p.nombre.toLowerCase().includes(texto) ||
+      p.ubicacion.toLowerCase().includes(texto);
 
-return t && ti && pr;
-});
+    let coincideTipo = tipoSeleccionado === "" || p.tipo === tipoSeleccionado;
 
-mostrar(filtradas);
+    return coincideTexto && coincideTipo;
+  });
+
+  mostrar(filtradas);
 }
 
-buscador.addEventListener("input",filtrar);
-filtroTipo.addEventListener("change",filtrar);
-filtroPrecio.addEventListener("change",filtrar);
+// 🔥 EVENTOS
+buscador.addEventListener("input", filtrar);
+tipo.addEventListener("change", filtrar);
 
+// 🔥 INICIAL
 mostrar(propiedades);
-
-let sliders={};
-
-function move(id,step){
-let s=document.getElementById(id);
-if(!sliders[id]) sliders[id]=0;
-sliders[id]+=step;
-
-if(sliders[id]>=s.children.length) sliders[id]=0;
-if(sliders[id]<0) sliders[id]=s.children.length-1;
-
-s.style.transform=`translateX(-${sliders[id]*100}%)`;
-}
 </script>
 
 </body>
