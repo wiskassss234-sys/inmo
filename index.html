@@ -21,10 +21,21 @@ body{
 
 /* HEADER */
 .header{
-  background:rgba(11,60,93,0.95);
-  color:#fff;
-  padding:0.8rem;
-  text-align:center;
+  background:linear-gradient(90deg,#0b3c5d,#092b44);
+  padding:15px 0;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.header-content{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.logo{
+  height:55px;
+  width:auto;
+  object-fit:contain;
 }
 
 /* HERO */
@@ -45,12 +56,18 @@ body{
   margin:5px;
 }
 
+/* 🔥 NUEVA SECCIÓN PROPIEDADES */
+.seccion-propiedades{
+  background:linear-gradient(180deg,#f4f4f4,#e0e0e0);
+  padding:50px 0;
+}
+
 /* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
   gap:25px;
-  padding:30px;
+  padding:0 30px;
 }
 
 .card{
@@ -118,13 +135,22 @@ body{
   text-decoration:none;
   margin-top:10px;
 }
+
+/* EXTRAS */
+.card-content ul{
+  padding-left:15px;
+  margin:5px 0;
+  font-size:14px;
+}
 </style>
 </head>
 
 <body>
 
 <header class="header">
-  <h1>Mi Dulce Hogar</h1>
+  <div class="header-content">
+    <img src="logo.png" alt="Mi Dulce Hogar Inmobiliaria" class="logo">
+  </div>
 </header>
 
 <section class="hero">
@@ -136,11 +162,13 @@ body{
 <option value="">Tipo</option>
 <option value="terreno">Terreno</option>
 <option value="bodega">Bodega</option>
+<option value="casa">Casa</option>
 </select>
 </section>
 
-<section>
-<div class="cards" id="contenedor"></div>
+<!-- 🔥 SECCIÓN CON NUEVO FONDO -->
+<section class="seccion-propiedades">
+  <div class="cards" id="contenedor"></div>
 </section>
 
 <script src="propiedades.js"></script>
@@ -158,7 +186,7 @@ function mostrar(lista){
       <div class="card">
         
         <div class="slider">
-          ${(p.imagenes || [p.imagen]).map((img,i)=>`
+          ${(p.imagenes && p.imagenes.length ? p.imagenes : ["https://via.placeholder.com/400"]).map((img,i)=>`
             <img src="${img}" class="slide ${i===0 ? 'active' : ''}">
           `).join('')}
 
@@ -171,6 +199,9 @@ function mostrar(lista){
           <p><strong>${p.nombre}</strong></p>
           <p>${p.ubicacion}</p>
           <p>${p.terreno}</p>
+
+          ${p.extra ? `<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>` : ""}
+
           <a href="https://wa.me/4444917754?text=${encodeURIComponent(p.whatsapp)}" 
              class="btn" target="_blank">Más info</a>
         </div>
@@ -201,7 +232,7 @@ tipo.addEventListener("change", filtrar);
 
 mostrar(propiedades);
 
-/* FUNCION SLIDER */
+/* SLIDER */
 document.addEventListener("click", function(e){
   if(e.target.classList.contains("next") || e.target.classList.contains("prev")){
     
