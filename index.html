@@ -10,14 +10,21 @@
   --azul:#0b3c5d;
   --dorado:#c9a227;
   --gris:#f4f4f4;
-  --oscuro:#222;
-  --blanco:#fff;
 }
 
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
   background:var(--gris);
+}
+
+/* TOPBAR */
+.topbar{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:5px;
+  font-size:0.9rem;
 }
 
 /* HEADER */
@@ -30,8 +37,31 @@ header{
   align-items:center;
 }
 
-header img{height:50px;}
-header h1{color:var(--dorado);}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{height:45px;}
+
+nav a{
+  margin:0 10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+nav a:hover{color:var(--dorado);}
+
+.btn-header{
+  background:var(--dorado);
+  color:#000;
+  padding:8px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
 /* HERO */
 .hero{
@@ -41,13 +71,14 @@ header h1{color:var(--dorado);}
   padding:5rem 2rem;
 }
 
-.hero h2{
-  font-size:2.5rem;
-  margin-bottom:10px;
-}
+.hero h2{font-size:2.5rem;}
 
-.hero p{
-  font-size:1.2rem;
+.buscador{
+  margin-top:15px;
+  padding:10px;
+  width:250px;
+  border-radius:8px;
+  border:none;
 }
 
 /* GRID */
@@ -67,9 +98,7 @@ header h1{color:var(--dorado);}
   transition:0.3s;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-}
+.card:hover{transform:translateY(-5px);}
 
 /* SLIDER */
 .slider-container{
@@ -89,7 +118,6 @@ header h1{color:var(--dorado);}
   object-fit:cover;
 }
 
-/* BOTONES */
 .prev,.next{
   position:absolute;
   top:50%;
@@ -106,9 +134,7 @@ header h1{color:var(--dorado);}
 .next{right:10px;}
 
 /* CONTENIDO */
-.card-content{
-  padding:1rem;
-}
+.card-content{padding:1rem;}
 
 .precio{
   color:#b11226;
@@ -160,16 +186,32 @@ header h1{color:var(--dorado);}
 
 <body>
 
+<div class="topbar">
+  📞 444 491 7754 | ✉️ contacto@inmo.com
+</div>
+
 <header>
-  <h1><img src="logo.png"> INMO</h1>
+  <div class="logo">
+    <img src="logo.png">
+    <h1>INMO</h1>
+  </div>
+
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#propiedades">Propiedades</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <a href="https://wa.me/4444917754" class="btn-header">Contactar</a>
 </header>
 
 <section class="hero">
   <h2>Encuentra tu propiedad ideal</h2>
   <p>Terrenos, casas y bodegas en S.L.P.</p>
+  <input type="text" placeholder="Buscar propiedad..." class="buscador">
 </section>
 
-<section>
+<section id="propiedades">
   <div class="cards" id="contenedorPropiedades"></div>
 </section>
 
