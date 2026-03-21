@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INMO | Propiedades</title>
+<title>INMO | Propiedades Premium</title>
 
 <style>
 :root{
@@ -14,16 +14,20 @@
 /* GENERAL */
 body{
   margin:0;
-  font-family:Arial;
+  font-family: 'Segoe UI', sans-serif;
   background:#f4f4f4;
 }
 
 /* HEADER */
 header{
-  background:var(--azul);
+  background:rgba(11,60,93,0.95);
   color:#fff;
   padding:1rem;
   text-align:center;
+  backdrop-filter: blur(10px);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 /* HERO */
@@ -32,59 +36,71 @@ header{
   url('fondo.png') center/cover no-repeat;
   color:#fff;
   text-align:center;
-  padding:4rem 2rem;
+  padding:5rem 2rem;
+  animation: zoom 20s infinite alternate;
+}
+
+@keyframes zoom{
+  from{background-size:100%;}
+  to{background-size:110%;}
 }
 
 .hero h2{
-  font-size:2rem;
+  font-size:2.5rem;
   margin-bottom:1rem;
+}
+
+/* GLASS BOX */
+.glass{
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  padding:20px;
+  border-radius:15px;
+  display:inline-block;
 }
 
 /* BUSCADOR */
 .buscador{
   padding:12px;
-  width:80%;
-  max-width:400px;
+  width:250px;
   border-radius:10px;
   border:none;
+  margin:5px;
 }
 
 /* FILTROS */
-.filtros{
-  margin-top:10px;
-}
-
-.filtros select{
+select{
   padding:10px;
-  margin:5px;
-  border-radius:8px;
+  border-radius:10px;
   border:none;
+  margin:5px;
 }
 
 /* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-  padding:20px;
+  gap:25px;
+  padding:30px;
 }
 
 .card{
   background:#fff;
-  border-radius:12px;
+  border-radius:15px;
   overflow:hidden;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  transition:0.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  transition:0.4s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
 }
 
 /* IMAGEN */
 .card img{
   width:100%;
-  height:200px;
+  height:220px;
   object-fit:cover;
 }
 
@@ -94,20 +110,26 @@ header{
 }
 
 .precio{
-  color:red;
+  color:var(--rojo);
   font-weight:bold;
-  font-size:1.2rem;
+  font-size:1.3rem;
 }
 
+/* BOTON */
 .btn{
   display:block;
-  background:var(--azul);
+  background:linear-gradient(45deg,var(--azul),var(--dorado));
   color:#fff;
   text-align:center;
-  padding:10px;
-  border-radius:8px;
+  padding:12px;
+  border-radius:10px;
   text-decoration:none;
   margin-top:10px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  opacity:0.85;
 }
 </style>
 </head>
@@ -121,25 +143,24 @@ header{
 <section class="hero">
 <h2>Encuentra tu propiedad ideal</h2>
 
-<input id="buscador" class="buscador" placeholder="Buscar por ubicación o nombre">
+<div class="glass">
+<input id="buscador" class="buscador" placeholder="Buscar propiedad...">
 
-<div class="filtros">
 <select id="tipo">
 <option value="">Tipo</option>
 <option value="terreno">Terreno</option>
 <option value="bodega">Bodega</option>
 </select>
 </div>
+
 </section>
 
 <section>
 <div class="cards" id="contenedor"></div>
 </section>
 
-<!-- 🔥 DATOS -->
 <script src="propiedades.js"></script>
 
-<!-- 🔥 SCRIPT -->
 <script>
 const contenedor = document.getElementById("contenedor");
 const buscador = document.getElementById("buscador");
@@ -169,7 +190,6 @@ function filtrar(){
   let tipoSeleccionado = tipo.value;
 
   let filtradas = propiedades.filter(p => {
-
     let coincideTexto =
       p.nombre.toLowerCase().includes(texto) ||
       p.ubicacion.toLowerCase().includes(texto);
