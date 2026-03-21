@@ -208,7 +208,7 @@ nav a:hover{color:var(--dorado);}
 <section class="hero">
   <h2>Encuentra tu propiedad ideal</h2>
   <p>Terrenos, casas y bodegas en S.L.P.</p>
-  <input type="text" placeholder="Buscar propiedad..." class="buscador">
+  <input type="text" id="buscador" placeholder="Buscar propiedad..." class="buscador">
 </section>
 
 <section id="propiedades">
@@ -221,43 +221,67 @@ nav a:hover{color:var(--dorado);}
 
 <script>
 const contenedor = document.getElementById("contenedorPropiedades");
+const buscador = document.getElementById("buscador");
 
-propiedades.forEach((prop, i) => {
+function mostrarPropiedades(lista){
 
-  let sliderId = "slider" + i;
+  contenedor.innerHTML = "";
 
-  let imagenes = prop.imagenes.map(img => `
-    <div class="slide"><img src="${img}"></div>
-  `).join("");
+  lista.forEach((prop, i) => {
 
-  let extras = prop.extra.map(e => `<span>✅ ${e}</span>`).join("");
+    let sliderId = "slider" + i;
 
-  contenedor.innerHTML += `
-  <div class="card">
-    <div class="slider-container">
-      <div class="slider" id="${sliderId}">
-        ${imagenes}
+    let imagenes = prop.imagenes.map(img => `
+      <div class="slide"><img src="${img}"></div>
+    `).join("");
+
+    let extras = prop.extra.map(e => `<span>✅ ${e}</span>`).join("");
+
+    contenedor.innerHTML += `
+    <div class="card">
+      <div class="slider-container">
+        <div class="slider" id="${sliderId}">
+          ${imagenes}
+        </div>
+        <button class="prev" onclick="moveSlide('${sliderId}', -1)">❮</button>
+        <button class="next" onclick="moveSlide('${sliderId}', 1)">❯</button>
       </div>
-      <button class="prev" onclick="moveSlide('${sliderId}', -1)">❮</button>
-      <button class="next" onclick="moveSlide('${sliderId}', 1)">❯</button>
-    </div>
 
-    <div class="card-content">
-      <p class="precio">${prop.precio}</p>
-      <div class="prop-info">
-        <span>📍 ${prop.ubicacion}</span>
-        <span>📏 ${prop.terreno}</span>
-        ${prop.construccion ? `<span>🏢 ${prop.construccion}</span>` : ""}
-        ${extras}
+      <div class="card-content">
+        <p class="precio">${prop.precio}</p>
+        <div class="prop-info">
+          <span>📍 ${prop.ubicacion}</span>
+          <span>📏 ${prop.terreno}</span>
+          ${prop.construccion ? `<span>🏢 ${prop.construccion}</span>` : ""}
+          ${extras}
+        </div>
+        <a href="https://wa.me/4444917754?text=${encodeURIComponent(prop.whatsapp)}" class="btn" target="_blank">
+          💬 Más información
+        </a>
       </div>
-      <a href="https://wa.me/4444917754?text=${encodeURIComponent(prop.whatsapp)}" class="btn" target="_blank">
-        💬 Más información
-      </a>
     </div>
-  </div>
-  `;
+    `;
+  });
+}
+
+// Mostrar todas
+mostrarPropiedades(propiedades);
+
+// 🔍 BUSCADOR FUNCIONAL
+buscador.addEventListener("input", () => {
+
+  let texto = buscador.value.toLowerCase();
+
+  let filtradas = propiedades.filter(p =>
+    p.nombre.toLowerCase().includes(texto) ||
+    p.ubicacion.toLowerCase().includes(texto) ||
+    p.precio.toLowerCase().includes(texto)
+  );
+
+  mostrarPropiedades(filtradas);
 });
 
+// SLIDER
 let sliders = {};
 
 function moveSlide(id, step){
