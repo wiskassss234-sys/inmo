@@ -29,14 +29,14 @@ ubicacion:"Calle Justo Sierra S/N, Cd del Maíz, S.L.P.",
 terreno:"1130 m²",
 
 imagenes:[
-"img/casacdmaiz1.jpg",
-"img/casacdmaiz2.jpg",
-"img/casacdmaiz3.jpg",
-"img/casacdmaiz4.jpg",
-"img/casacdmaiz5.jpg",
-"img/casacdmaiz6.jpg",
-"img/casacdmaiz7.jpg",
-"img/casacdmaiz8.jpg"
+"casacdmaiz1.jpg",
+"casacdmaiz2.jpg",
+"casacdmaiz3.jpg",
+"casacdmaiz4.jpg",
+"casacdmaiz5.jpg",
+"casacdmaiz6.jpg",
+"casacdmaiz7.jpg",
+"casacdmaiz8.jpg"
 ],
 
 whatsapp:"Hola, quiero información sobre la casa en Ejido Palomas"
