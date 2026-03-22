@@ -3,53 +3,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Dulce Hogar | Inmobiliaria</title><style>
-:root{
-  --azul:#0b3c5d;
-  --dorado:#c9a227;
-  --rojo:#e63946;
-}
-
+:root{--azul:#0b3c5d;--dorado:#c9a227;--rojo:#e63946;}
 body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f4f4;}
-
-.header{background:linear-gradient(90deg,#0b3c5d,#092b44);padding:10px 20px;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.header{background:linear-gradient(90deg,#0b3c5d,#092b44);padding:10px 20px;box-shadow:0 5px 15px rgba(0,0,0,0.2);} 
 .header-content{display:flex;align-items:center;justify-content:space-between;}
-.logo{height:50px;border-radius:8px;}
+.logo{height:50px;border-radius:8px;} 
 .titulo{flex:1;text-align:center;font-size:1.8rem;font-weight:700;letter-spacing:3px;background:linear-gradient(45deg,#fff,#c9a227);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-
 .hero{background:linear-gradient(rgba(11,60,93,0.7),rgba(0,0,0,0.7)),url('fondo.png') center/cover no-repeat;color:#fff;text-align:center;padding:5rem 2rem;}
-
-.buscador, select{padding:12px;width:220px;border-radius:10px;border:none;margin:5px;}
-
+.buscador, select{padding:12px;width:200px;border-radius:10px;border:none;margin:5px;}
 .seccion-propiedades{background:linear-gradient(180deg,#f4f4f4,#e0e0e0);padding:50px 0;}
-
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;padding:0 30px;}
-
 .card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.2);transition:.3s;}
-.card:hover{transform:translateY(-5px);box-shadow:0 15px 30px rgba(0,0,0,0.3);}
-
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 30px rgba(0,0,0,0.3);} 
 .slider{position:relative;width:100%;height:220px;overflow:hidden;}
 .slide{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s;cursor:pointer;}
 .slide.active{opacity:1;}
-
 .prev,.next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;padding:8px 12px;cursor:pointer;border-radius:8px;}
 .prev{left:10px;} .next{right:10px;}
-
 .card-content{padding:15px;}
 .precio{color:var(--rojo);font-weight:bold;font-size:1.5rem;}
-
 .btn{display:block;background:linear-gradient(45deg,var(--azul),var(--dorado));color:#fff;text-align:center;padding:12px;border-radius:10px;text-decoration:none;margin-top:10px;}
-
 .card-content ul{padding-left:15px;margin:5px 0;font-size:14px;}
-
-/* WHATSAPP FLOAT */
-.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;font-size:28px;padding:15px;border-radius:50%;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.3);}
-
-/* MODAL */
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;}
-.modal img{max-width:90%;max-height:90%;border-radius:10px;}
-
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;font-size:28px;padding:15px;border-radius:50%;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.3);} 
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);justify-content:center;align-items:center;} 
+.modal img{max-width:90%;max-height:90%;border-radius:10px;} 
 #contador{text-align:center;font-weight:bold;margin-bottom:20px;}
-</style></head><body><header class="header">
+</style></head><body>
+<header class="header">
   <div class="header-content">
     <img src="logo.png" class="logo">
     <h1 class="titulo">Inmobiliaria Mi Dulce Hogar</h1>
@@ -61,6 +41,18 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f4f4;}
 <option value="terreno">Terreno</option>
 <option value="bodega">Bodega</option>
 <option value="casa">Casa</option>
+</select><select id="precioFiltro">
+<option value="">Precio</option>
+<option value="1">Menos de $1M</option>
+<option value="2">$1M - $3M</option>
+<option value="3">$3M - $6M</option>
+<option value="4">Más de $6M</option>
+</select><select id="ciudad">
+<option value="">Ciudad</option>
+<option value="Ciudad Valles">Ciudad Valles</option>
+<option value="Tamazunchale">Tamazunchale</option>
+<option value="Rioverde">Rioverde</option>
+<option value="Axtla">Axtla</option>
 </select><select id="orden">
 <option value="">Ordenar</option>
 <option value="menor">Precio menor</option>
@@ -69,13 +61,14 @@ body{margin:0;font-family:'Segoe UI',sans-serif;background:#f4f4f4;}
 </section><section class="seccion-propiedades">
 <p id="contador"></p>
 <div class="cards" id="contenedor"></div>
-</section><div id="modal" class="modal"><img id="imgModal"></div><a href="https://wa.me/524444917754" class="whatsapp-float" target="_blank">💬</a>
-
-<script src="propiedades.js"></script><script>
+</section><div id="modal" class="modal"><img id="imgModal"></div>
+<a href="https://wa.me/524444917754" class="whatsapp-float" target="_blank">💬</a><script src="propiedades.js"></script><script>
 const contenedor = document.getElementById("contenedor");
 const buscador = document.getElementById("buscador");
 const tipo = document.getElementById("tipo");
 const orden = document.getElementById("orden");
+const precioFiltro = document.getElementById("precioFiltro");
+const ciudad = document.getElementById("ciudad");
 
 function mostrar(lista){
   contenedor.innerHTML = "";
@@ -88,40 +81,42 @@ function mostrar(lista){
           ${(p.imagenes && p.imagenes.length ? p.imagenes : ["https://via.placeholder.com/400"]).map((img,i)=>`
             <img src="${img}" class="slide ${i===0 ? 'active' : ''}">
           `).join('')}
-
           <button class="prev">‹</button>
           <button class="next">›</button>
         </div>
-
         <div class="card-content">
           <p class="precio">${p.precio}</p>
           <p><strong>${p.nombre}</strong></p>
           <p>${p.ubicacion}</p>
           <p>${p.terreno || ""}</p>
-
           ${p.extra ? `<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>` : ""}
-
           <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn" target="_blank">📲 Solicitar información</a>
           <a href="tel:4444917754" class="btn">📞 Llamar</a>
           <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.ubicacion)}" target="_blank" class="btn">📍 Ver ubicación</a>
         </div>
-      </div>
-    `;
+      </div>`;
   });
 }
 
 function filtrar(){
   let texto = buscador.value.toLowerCase();
   let tipoSeleccionado = tipo.value;
+  let filtroPrecio = precioFiltro.value;
+  let ciudadSeleccionada = ciudad.value;
 
   let filtradas = propiedades.filter(p => {
-    let coincideTexto =
-      (p.nombre || '').toLowerCase().includes(texto) ||
-      (p.ubicacion || '').toLowerCase().includes(texto);
-
+    let coincideTexto = (p.nombre || '').toLowerCase().includes(texto) || (p.ubicacion || '').toLowerCase().includes(texto);
     let coincideTipo = tipoSeleccionado === "" || p.tipo === tipoSeleccionado;
 
-    return coincideTexto && coincideTipo;
+    let coincidePrecio = true;
+    if(filtroPrecio === "1") coincidePrecio = p.precioNum < 1000000;
+    if(filtroPrecio === "2") coincidePrecio = p.precioNum >= 1000000 && p.precioNum <= 3000000;
+    if(filtroPrecio === "3") coincidePrecio = p.precioNum > 3000000 && p.precioNum <= 6000000;
+    if(filtroPrecio === "4") coincidePrecio = p.precioNum > 6000000;
+
+    let coincideCiudad = ciudadSeleccionada === "" || (p.ubicacion || "").includes(ciudadSeleccionada);
+
+    return coincideTexto && coincideTipo && coincidePrecio && coincideCiudad;
   });
 
   if(orden.value === "menor") filtradas.sort((a,b)=>a.precioNum - b.precioNum);
@@ -133,6 +128,8 @@ function filtrar(){
 buscador.addEventListener("input", filtrar);
 tipo.addEventListener("change", filtrar);
 orden.addEventListener("change", filtrar);
+precioFiltro.addEventListener("change", filtrar);
+ciudad.addEventListener("change", filtrar);
 
 mostrar(propiedades);
 
@@ -142,15 +139,9 @@ document.addEventListener("click", function(e){
     const slider = e.target.closest(".slider");
     const slides = slider.querySelectorAll(".slide");
     let index = Array.from(slides).findIndex(s => s.classList.contains("active"));
-
     slides[index].classList.remove("active");
-
-    if(e.target.classList.contains("next")){
-      index = (index + 1) % slides.length;
-    } else {
-      index = (index - 1 + slides.length) % slides.length;
-    }
-
+    if(e.target.classList.contains("next")) index = (index + 1) % slides.length;
+    else index = (index - 1 + slides.length) % slides.length;
     slides[index].classList.add("active");
   }
 });
