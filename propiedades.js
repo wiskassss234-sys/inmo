@@ -1,4 +1,4 @@
-89const propiedades = [
+const propiedades = [
 {
 nombre:"Terreno Matlapa",
 tipo:"terreno",
