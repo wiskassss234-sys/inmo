@@ -105,4 +105,22 @@ whatsapp:"Hola, quiero información sobre el rancho en Llera Tamaulipas"
   imagenes: ["villa1.jpg","villa2.jpg", "villa3.jpg","villa4.jpg"],
   whatsapp: "Hola, quiero información del terreno en Villa de Reyes"
 }
+
+{
+nombre: "Hotel Villa Vera Acapulco",
+tipo: "hotel",
+precio: "Precio de oportunidad",
+precioNum: 0,
+ubicacion: "Acapulco, Guerrero",
+terreno: "21,298 m²",
+extra: [
+  "Terreno amplio",
+  "Zona turística",
+  "Ideal para hotel o desarrollo",
+  "Alta plusvalía",
+  "Gran potencial de inversión"
+],
+imagenes: ["villaVera1.jpg","villaVera2.jpg"],
+whatsapp: "Hola, quiero información del Hotel Villa Vera Acapulco"
+}
 ];
