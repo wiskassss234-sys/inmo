@@ -146,7 +146,7 @@ extra: [
 "Planta de emergencia eléctrica",
 "Documentación en regla (federal, estatal y municipal)"
 ],
-imagenes: ["gasolinera1.jpg","gasolinera2.jpg","gasolinera3.jpg"],
+imagenes: ["gasolinera1.jpg","gasolinera2.jpg","gasolinera3.jpg", "gasolinera4.jpg", "gasolinera5.jpg"],
 whatsapp: "Hola, quiero información sobre la gasolinera en venta en Tonalá Jalisco"
 } 
 ];
