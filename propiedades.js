@@ -2,7 +2,7 @@ const propiedades = [
 {
 nombre:"Terreno Matlapa",
 tipo:"terreno",
-precio:"$9,000,000",
+precio:"$9,000,000.00",
 precioNum:9000000,
 ubicacion:"Matlapa, S.L.P.",
 terreno:"2,163 m²",
@@ -13,7 +13,7 @@ whatsapp:"Hola quiero info del terreno Matlapa"
 {
 nombre:"Bodega Tamuín",
 tipo:"bodega",
-precio:"$5,900,000",
+precio:"$5,900,000.00",
 precioNum:5900000,
 ubicacion:"Tamuín, S.L.P.",
 terreno:"1,600 m²",
@@ -24,7 +24,7 @@ whatsapp:"Hola quiero info de la bodega Tamuín"
 {
 nombre:"Casa en Ejido Palomas",
 tipo:"casa",
-precio:"$1,200,000",
+precio:"$1,200,000.00",
 ubicacion:"Calle Justo Sierra S/N, Cd del Maíz, S.L.P.",
 terreno:"1130 m²",
 imagenes:[
@@ -42,7 +42,7 @@ whatsapp:"Hola, quiero información sobre la casa en Ejido Palomas"
 {
 nombre:"Casa en Axtla de Terrazas",
 tipo:"casa",
-precio:"$720,000",
+precio:"$720,000.00",
 precioNum:720000,
 ubicacion:"Fraccionamiento Santa María 2da/3ra Sección, Axtla de Terrazas, S.L.P. (cerca del Hospital Santa Catarina)",
 terreno:"90 m² (15m x 6m)",
@@ -176,7 +176,7 @@ const propiedades = [
   {
     nombre: "Casa frente Parque Morales",
     tipo: "casa",
-    precio: "$7,800,000",
+    precio: "$7,800,000.00",
     precioNum: 7800000,
     ubicacion: "San Luis Potosí, S.L.P. (Frente a Parque Morales)",
     terreno: "245 m²",
@@ -194,7 +194,7 @@ const propiedades = [
       "Excelente iluminación",
       "Casa muy cuidada"
     ],
-    imagenes: ["casamorales1.jpg", "casamorales2.jpg", "casamorales3.jpg","casamorales4.jpg","casamorales5.jpg","casamorales6.jpg","casamorales7.jpg","casamorales8.jpg","casamorales9.jpg","casamorales10.jpg","casamorales11.jpg","casamorales12.jpg",],
+    imagenes: ["casamorales1.jpg", "casamorales2.jpg", "casamorales3.jpg","casamorales4.jpg","casamorales5.jpg","casamorales6.jpg","casamorales7.jpg","casamorales8.jpg","casamorales9.jpg","casamorales10.jpg","casamorales11.jpg","casamorales12.jpg"],
     whatsapp: "Hola, quiero información de la casa frente al Parque Morales"
   }
 
