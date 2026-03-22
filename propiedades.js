@@ -122,5 +122,31 @@ extra: [
 ],
 imagenes: ["villavera1.jpg","villavera2.jpg", "villavera3.jpg", "villavera4.jpg","villavera5.jpg","villavera6.jpg","villavera7.jpg","villavera8.jpg","villavera9.jpg","villavera10.jpg","villavera11.jpg","villavera12.jpg", "villavera13.jpg"],
 whatsapp: "Hola, quiero información del Hotel Villa Vera Acapulco"
-}
+}, 
+
+{
+nombre: "Gasolinera en Venta Tonalá, Jalisco",
+tipo: "negocio",
+precio: "Precio de oportunidad",
+precioNum: 0,
+ubicacion: "Tonalá, Jalisco",
+terreno: "1,100 m² aprox.",
+extra: [
+"Estación de servicio con marca propia (bandera blanca)",
+"Zona urbana con alta afluencia vehicular",
+"Ubicada cerca del centro de Tonalá",
+"Vialidad secundaria de doble sentido",
+"Población aproximada de 23,096 habitantes en la zona",
+"Alto flujo por conexión con Periférico Sur",
+"Venta promedio: 200,000 litros mensuales",
+"3 dispensarios (2 de gasolina y 1 de 3 productos con diésel)",
+"3 tanques de almacenamiento (Magna, Premium y Diésel)",
+"Oficinas y área para tienda de conveniencia",
+"Cochera privada",
+"Planta de emergencia eléctrica",
+"Documentación en regla (federal, estatal y municipal)"
+],
+imagenes: ["gasolinera1.jpg","gasolinera2.jpg","gasolinera3.jpg"],
+whatsapp: "Hola, quiero información sobre la gasolinera en venta en Tonalá Jalisco"
+} 
 ];
