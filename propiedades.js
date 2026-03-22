@@ -221,4 +221,25 @@ extra: [
 imagenes: ["rioverde1.jpg", "rioverde2.jpg","rioverde3.jpg","rioverde4.jpg", "rioverde5.jpg"],
 whatsapp: "Hola, quiero información del terreno de 4 hectáreas en Río Verde"
 } 
+, 
+{
+nombre: "Bodega en Calle Soto y Gama",
+tipo: "bodega",
+precio: "$5,500,000.00",
+precioNum: 5500000,
+tipoPrecio: "total",
+ubicacion: "Calle Soto y Gama, Ciudad Valles, S.L.P.",
+ciudad: "Ciudad Valles",
+estado: "S.L.P.",
+terreno: null,
+construccion: "500 m²",
+recamaras: null,
+banos: null,
+extra: [
+"Escritura en regla",
+"Precio negociable"
+],
+imagenes: ["bodegasotoygama1.jpg", "bodegasotoygama1.jpg", "bodegasotoygama2.jpg", "bodegasotoygama3.jpg", "bodegasotoygama4.jpg", "bodegasotoygama5.jpg", "bodegasotoygama6.jpg", "bodegasotoygama7.jpg", "bodegasotoygama8.jpg"],
+whatsapp: "Hola, quiero información sobre la bodega en calle Soto y Gama en Ciudad Valles"
+}
 ];
