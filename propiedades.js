@@ -197,5 +197,5 @@ const propiedades = [
     imagenes: ["casamorales1.jpg", "casamorales2.jpg", "casamorales3.jpg","casamorales4.jpg","casamorales5.jpg","casamorales6.jpg","casamorales7.jpg","casamorales8.jpg","casamorales9.jpg","casamorales10.jpg","casamorales11.jpg","casamorales12.jpg",],
     whatsapp: "Hola, quiero información de la casa frente al Parque Morales"
   }
-];
+
 ];
