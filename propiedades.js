@@ -170,5 +170,32 @@ extra: [
 ],
 imagenes: ["casanorte1.jpg","casanorte2.jpg","casanorte3.jpg", "casanorte4.jpg","casanorte5.jpg","casanorte6.jpg","casanorte8.jpg","casanorte9.jpg","casanorte10.jpg","casanorte12.jpg"],
 whatsapp: "Hola, quiero información de la casa en Norte Residencial"
-} 
+}, 
+
+const propiedades = [
+  {
+    nombre: "Casa frente Parque Morales",
+    tipo: "casa",
+    precio: "$7,800,000",
+    precioNum: 7800000,
+    ubicacion: "San Luis Potosí, S.L.P. (Frente a Parque Morales)",
+    terreno: "245 m²",
+    construccion: "407 m²",
+    recamaras: 3,
+    banos: "2.5",
+    extra: [
+      "Sala - comedor",
+      "Cocina",
+      "Estancia",
+      "Garage para 2 vehículos",
+      "Lavandería techada",
+      "Cuarto de servicio",
+      "Muy espaciosa",
+      "Excelente iluminación",
+      "Casa muy cuidada"
+    ],
+    imagenes: ["casamorales1.jpg", "casamorales2.jpg", "casamorales3.jpg","casamorales4.jpg","casamorales5.jpg","casamorales6.jpg","casamorales7.jpg","casamorales8.jpg","casamorales9.jpg","casamorales10.jpg","casamorales11.jpg","casamorales12.jpg",],
+    whatsapp: "Hola, quiero información de la casa frente al Parque Morales"
+  }
+];
 ];
