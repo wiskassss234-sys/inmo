@@ -154,7 +154,7 @@ whatsapp: "Hola, quiero información sobre la gasolinera en venta en Tonalá Jal
 nombre: "Casa en Norte Residencial",
 tipo: "casa",
 precio: "$2,000,000.00",
-precioNum: 2,000,000.00,
+precioNum: 2000000,
 ubicacion: "Norte Residencial, México",
 terreno: "No especificado",
 extra: [
