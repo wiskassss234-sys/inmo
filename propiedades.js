@@ -102,7 +102,7 @@ whatsapp:"Hola, quiero información sobre el rancho en Llera Tamaulipas"
   ubicacion: "Villa de Reyes, S.L.P.",
   terreno: "51,343.74 m²",
   extra: ["Escritura libre de gravamen", "Luz", "Agua"],
-  imagenes: ["villa1.jpg", "villa2.jpg" , "villa3.jpg", "villa4.jpg"],
+  imagenes: ["villa1.jpg","villa2.jpg", "villa3.jpg","villa4.jpg"],
   whatsapp: "Hola, quiero información del terreno en Villa de Reyes"
 }
 ];
