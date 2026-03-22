@@ -196,5 +196,29 @@ whatsapp: "Hola, quiero información de la casa en Norte Residencial"
     imagenes: ["casamorales1.jpg", "casamorales2.jpg", "casamorales3.jpg","casamorales4.jpg","casamorales5.jpg","casamorales6.jpg","casamorales7.jpg","casamorales8.jpg","casamorales9.jpg","casamorales10.jpg","casamorales11.jpg","casamorales12.jpg"],
     whatsapp: "Hola, quiero información de la casa frente al Parque Morales"
   }
-
+,
+{
+nombre: "Terreno 4 Hectáreas Río Verde Centro",
+tipo: "terreno",
+precio: "$18,000 MXN por m²",
+precioNum: 18000,
+tipoPrecio: "m2",
+ubicacion: "Centro de Río Verde, S.L.P.",
+terreno: "40,000 m² (4 hectáreas)",
+construccion: null,
+recamaras: null,
+banos: null,
+extra: [
+"Ubicación estratégica en zona comercial",
+"Junto a Bodega Aurrera",
+"Cercano a Walmart, Soriana, Costco y Liverpool",
+"Ideal para plazas comerciales y fraccionamientos",
+"Permiso de construcción",
+"Base hidráulica",
+"Alta plusvalía",
+"Fraccionable desde 1 hectárea"
+],
+imagenes: ["rioverde1.jpg", "rioverde2.jpg","rioverde3.jpg","rioverde4.jpg],
+whatsapp: "Hola, quiero información del terreno de 4 hectáreas en Río Verde"
+} 
 ];
