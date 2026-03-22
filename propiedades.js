@@ -1,4 +1,4 @@
-const propiedades = [
+89const propiedades = [
 {
 nombre:"Terreno Matlapa",
 tipo:"terreno",
@@ -104,5 +104,5 @@ whatsapp:"Hola, quiero información sobre el rancho en Llera Tamaulipas"
   extra: ["Escritura libre de gravamen", "Luz", "Agua"],
   imagenes: ["villa1.jpg", "villa2.jpg, villa3.jpg, villa4.jpg"],
   whatsapp: "Hola, quiero información del terreno en Villa de Reyes"
-},
+}
 ];
