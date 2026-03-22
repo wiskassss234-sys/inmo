@@ -172,7 +172,6 @@ imagenes: ["casanorte1.jpg","casanorte2.jpg","casanorte3.jpg", "casanorte4.jpg",
 whatsapp: "Hola, quiero información de la casa en Norte Residencial"
 }, 
 
-const propiedades = [
   {
     nombre: "Casa frente Parque Morales",
     tipo: "casa",
