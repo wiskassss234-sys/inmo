@@ -105,7 +105,7 @@ whatsapp:"Hola, quiero información sobre el rancho en Llera Tamaulipas"
   imagenes: ["villa1.jpg","villa2.jpg", "villa3.jpg","villa4.jpg"],
   whatsapp: "Hola, quiero información del terreno en Villa de Reyes"
 }
-
+, 
 {
 nombre: "Hotel Villa Vera Acapulco",
 tipo: "hotel",
