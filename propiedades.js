@@ -239,7 +239,9 @@ extra: [
 "Escritura en regla",
 "Precio negociable"
 ],
-imagenes: ["bodegasotoygama1.jpg", "bodegasotoygama1.jpg", "bodegasotoygama2.jpg", "bodegasotoygama3.jpg", "bodegasotoygama4.jpg", "bodegasotoygama5.jpg", "bodegasotoygama6.jpg", "bodegasotoygama7.jpg", "bodegasotoygama8.jpg"],
+imagenes: ["bodegasotoygama1.jpg", "bodegasotoygama1.jpg", "bodegasotoygama2.jpg", "bodegasotoygama3.jpg", "bodegasotoygama4.jpg", "bodegasotoygama5.jpg", "bodegasotoygama6.jpg", "bodegasotoygama7.jpg", "bodegasotoygama8.jpg", 
+"bodegasotoygama9.jpg", 
+"bodegasotoygama10.jpg"],
 whatsapp: "Hola, quiero información sobre la bodega en calle Soto y Gama en Ciudad Valles"
 }
 ];
