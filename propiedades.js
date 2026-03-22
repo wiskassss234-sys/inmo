@@ -148,5 +148,27 @@ extra: [
 ],
 imagenes: ["gasolinera1.jpg","gasolinera2.jpg","gasolinera3.jpg", "gasolinera4.jpg", "gasolinera5.jpg"],
 whatsapp: "Hola, quiero información sobre la gasolinera en venta en Tonalá Jalisco"
+}, 
+
+{
+nombre: "Casa en Norte Residencial",
+tipo: "casa",
+precio: "$2,000,000.00",
+precioNum: 2,000,000.00,
+ubicacion: "Norte Residencial, México",
+terreno: "No especificado",
+extra: [
+"Ubicada a 800 m del IMSS",
+"A 2 cuadras de OXXO y Pollo Church",
+"Cercana a escuelas y zonas comerciales",
+"Sala - comedor",
+"Cocina",
+"3 recámaras",
+"2 baños completos y 1 medio baño",
+"Amplio patio",
+"Totalmente remodelada"
+],
+imagenes: ["casanorte1.jpg","casanorte2.jpg","casanorte3.jpg"],
+whatsapp: "Hola, quiero información de la casa en Norte Residencial"
 } 
 ];
