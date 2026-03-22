@@ -62,8 +62,7 @@ imagenes:[
 "axtla8.jpg"
 ],
 whatsapp:"Hola, quiero información sobre la casa en Axtla de Terrazas de $720,000"
-}
-, 
+}, 
 {
 nombre:"Ranchazo en Llera Tamaulipas",
 tipo:"rancho",
