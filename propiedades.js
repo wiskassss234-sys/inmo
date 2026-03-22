@@ -168,7 +168,7 @@ extra: [
 "Amplio patio",
 "Totalmente remodelada"
 ],
-imagenes: ["casanorte1.jpg","casanorte2.jpg","casanorte3.jpg", "casanorte4.jpg","casanorte5.jpg","casanorte6.jpg","casanorte7.jpg","casanorte8.jpg","casanorte9.jpg","casanorte10.jpg","casanorte11.jpg","casanorte12.jpg"],
+imagenes: ["casanorte1.jpg","casanorte2.jpg","casanorte3.jpg", "casanorte4.jpg","casanorte5.jpg","casanorte6.jpg","casanorte8.jpg","casanorte9.jpg","casanorte10.jpg","casanorte12.jpg"],
 whatsapp: "Hola, quiero información de la casa en Norte Residencial"
 } 
 ];
