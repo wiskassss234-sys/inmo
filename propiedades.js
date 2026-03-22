@@ -63,4 +63,37 @@ imagenes:[
 ],
 whatsapp:"Hola, quiero información sobre la casa en Axtla de Terrazas de $720,000"
 }
+
+{
+nombre:"Ranchazo en Llera Tamaulipas",
+tipo:"rancho",
+precio:"Precio de oportunidad",
+precioNum:0,
+ubicacion:"Llera, Tamaulipas",
+terreno:"2,144 hectáreas",
+
+extra:[
+"Terreno completamente plano",
+"Escrituras en regla",
+"6 km de río dentro del rancho",
+"5 pozos de agua (riego para 1,000 ha)",
+"Infraestructura de riego en 300 ha",
+"Luz en todo el rancho",
+"Casa para empleados",
+"Acceso pavimentado"
+],
+
+imagenes:[
+"llera1.jpg",
+"llera2.jpg",
+"llera3.jpg", 
+"llera4.jpg",
+"llera5.jpg",
+"llera6.jpg",
+"llera7.jpg",
+"llera8.jpg"
+],
+
+whatsapp:"Hola, quiero información sobre el ranchazo en Llera Tamaulipas"
+}
 ];
