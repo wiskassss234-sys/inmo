@@ -218,7 +218,7 @@ extra: [
 "Alta plusvalía",
 "Fraccionable desde 1 hectárea"
 ],
-imagenes: ["rioverde1.jpg", "rioverde2.jpg","rioverde3.jpg","rioverde4.jpg],
+imagenes: ["rioverde1.jpg", "rioverde2.jpg","rioverde3.jpg","rioverde4.jpg", "rioverde5.jpg"],
 whatsapp: "Hola, quiero información del terreno de 4 hectáreas en Río Verde"
 } 
 ];
