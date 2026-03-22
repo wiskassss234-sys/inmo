@@ -120,7 +120,7 @@ extra: [
   "Alta plusvalía",
   "Gran potencial de inversión"
 ],
-imagenes: ["villaVera1.jpg","villaVera2.jpg"],
+imagenes: ["villavera1.jpg","villavera2.jpg", "villavera3.jpg", "villavera4.jpg","villavera5.jpg","villavera6.jpg","villavera7.jpg","villavera8.jpg","villavera9.jpg","villavera10.jpg","villavera11.jpg","villavera12.jpg", "villavera13.jpg"],
 whatsapp: "Hola, quiero información del Hotel Villa Vera Acapulco"
 }
 ];
