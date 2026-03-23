@@ -10,13 +10,10 @@
 <style>
 :root{
   --primary:#2563eb;
-  --bg:#f8fafc;
-  --text:#1e293b;
-  --sub:#64748b;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:var(--bg);}
+body{background:#f8fafc;}
 
 /* HEADER */
 .header{
@@ -26,57 +23,81 @@ body{background:var(--bg);}
   justify-content:space-between;
   border-bottom:1px solid #ddd;
 }
-
 .logo{font-weight:700;color:var(--primary);}
 
-/* FILTRO */
-.filtros{
-  padding:15px;
+/* HERO */
+.hero{
+  height:300px;
+  background:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.filtros input{
-  width:100%;
-  padding:10px;
+.overlay{
+  background:rgba(0,0,0,0.5);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  color:#fff;
+}
+
+.overlay input{
+  margin-top:10px;
+  padding:12px;
+  width:260px;
   border-radius:10px;
-  border:1px solid #ccc;
+  border:none;
 }
 
 /* CONTENIDO */
 .container{
   max-width:1200px;
   margin:auto;
-  padding:20px;
+  padding:30px 20px;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+  gap:25px;
 }
 
 .card{
-  background:#fff;
-  border-radius:15px;
+  border-radius:18px;
   overflow:hidden;
-  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:.3s;
 }
 
-.card-content{padding:15px;}
-
-.price{
-  font-weight:700;
-  color:var(--primary);
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 50px rgba(0,0,0,0.15);
 }
-
-.sub{color:var(--sub);font-size:13px;}
 
 /* SLIDER */
 .slider{position:relative;}
 
 .slider img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
+}
+
+/* overlay info */
+.info-img{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:15px;
+  color:#fff;
+  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.price{
+  font-weight:700;
+  font-size:18px;
 }
 
 /* flechas */
@@ -115,11 +136,21 @@ body{background:var(--bg);}
   background:#fff;
 }
 
+/* info abajo */
+.card-content{
+  padding:15px;
+}
+
+.sub{
+  font-size:13px;
+  color:#64748b;
+}
+
 /* botón */
 .btn{
   display:block;
   margin-top:10px;
-  background:var(--primary);
+  background:#25D366;
   color:#fff;
   padding:10px;
   border-radius:10px;
@@ -135,15 +166,17 @@ body{background:var(--bg);}
   <div class="logo">Mi Dulce Hogar</div>
 </div>
 
-<div class="filtros">
-  <input type="text" id="busqueda" placeholder="Buscar ubicación...">
+<div class="hero">
+  <div class="overlay">
+    <h2>Encuentra tu propiedad ideal</h2>
+    <input type="text" id="busqueda" placeholder="Buscar ubicación...">
+  </div>
 </div>
 
 <div class="container">
   <div class="cards" id="contenedor"></div>
 </div>
 
-<!-- IMPORTANTE -->
 <script src="propiedades.js"></script>
 
 <script>
@@ -170,15 +203,18 @@ function mostrar(lista){
         <div class="nav left" onclick="prev(${i})">❮</div>
         <div class="nav right" onclick="next(${i})">❯</div>
 
+        <div class="info-img">
+          <div class="price">${p.precio}</div>
+          <div>${p.nombre}</div>
+          <div class="sub">${p.ubicacion}</div>
+        </div>
+
         <div class="dots" id="dots-${i}">
           ${p.imagenes.map((_,d)=>`<span class="dot ${d===0?'active':''}"></span>`).join("")}
         </div>
       </div>
 
       <div class="card-content">
-        <div class="price">${p.precio}</div>
-        <div>${p.nombre}</div>
-        <div class="sub">${p.ubicacion}</div>
         <div class="sub">${p.terreno || ""}</div>
 
         ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>`:""}
@@ -213,10 +249,9 @@ function prev(i){
   updateSlider(i);
 }
 
-// swipe
 let startX=0;
 
-function touchStart(e,i){
+function touchStart(e){
   startX=e.changedTouches[0].screenX;
 }
 
@@ -226,17 +261,11 @@ function touchEnd(e,i){
   if(endX-startX>50) prev(i);
 }
 
-// filtro
 busqueda.addEventListener("input",()=>{
   const valor=busqueda.value.toLowerCase();
   const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(valor));
   mostrar(filtradas);
 });
-
-// autoplay
-setInterval(()=>{
-  propiedades.forEach((_,i)=>next(i));
-},5000);
 
 mostrar(propiedades);
 </script>
