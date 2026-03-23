@@ -8,141 +8,103 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#f1f5f9;}
 
-.header{
-  background:#fff;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #ddd;
-}
+.header{background:#fff;padding:15px 20px;display:flex;justify-content:space-between;border-bottom:1px solid #ddd;}
 .logo{font-weight:700;font-size:18px;}
 
-.hero{
-  height:420px;
-  background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  width:100%;height:100%;
-  background:rgba(0,0,0,0.5);
-}
-.hero-content{
-  position:relative;
-  color:#fff;
-  text-align:center;
-}
+.hero{height:420px;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;display:flex;align-items:center;justify-content:center;position:relative;}
+.hero::before{content:"";position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.5);} 
+.hero-content{position:relative;color:#fff;text-align:center;}
 .hero-content h1{font-size:38px;}
 .hero-content p{margin:15px 0;}
-.btn-main{
-  background:var(--primary);
-  padding:12px 25px;
-  border-radius:10px;
-  color:#fff;
-  text-decoration:none;
-}
+.btn-main{background:var(--primary);padding:12px 25px;border-radius:10px;color:#fff;text-decoration:none;}
 
-.search-box{
-  background:#fff;
-  margin:-50px auto 20px;
-  padding:20px;
-  border-radius:20px;
-  max-width:900px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  display:grid;
-  gap:10px;
-}
-.search-box input,.search-box select, .search-box button{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
-}
-.search-box button{background:var(--primary);color:#fff;border:none;}
+.search-box{background:#fff;margin:-50px auto 20px;padding:20px;border-radius:20px;max-width:900px;box-shadow:0 10px 30px rgba(0,0,0,0.1);display:grid;gap:10px;}
+.search-box input{padding:12px;border-radius:10px;border:1px solid #ccc;}
 
 .container{max-width:1200px;margin:auto;padding:30px 20px;}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
 
-.card{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-.card img{width:100%;height:220px;object-fit:cover;}
-.badge{
-  position:absolute;top:10px;right:10px;
-  background:#fff;padding:5px 12px;border-radius:20px;font-size:12px;
-}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:.3s;}
+.card:hover{transform:translateY(-5px);} 
+
+.slider{position:relative;}
+.slider img{width:100%;height:220px;object-fit:cover;}
+
+.badge{position:absolute;top:10px;right:10px;background:#fff;padding:5px 12px;border-radius:20px;font-size:12px;}
+
+.nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;padding:5px 10px;border-radius:50%;cursor:pointer;}
+.nav.left{left:10px;} .nav.right{right:10px;}
+
 .card-content{padding:15px;}
 .price{color:var(--primary);font-weight:700;font-size:20px;}
+.btn{display:block;margin-top:10px;background:#25D366;color:#fff;padding:10px;border-radius:10px;text-align:center;text-decoration:none;}
 
-.footer{
-  background:#0f172a;
-  color:#fff;
-  padding:40px 20px;
-  margin-top:40px;
-}
+.footer{background:#0f172a;color:#fff;padding:40px 20px;margin-top:40px;}
 </style></head><body><div class="header">
   <div class="logo">Mi Dulce Hogar</div>
 </div><div class="hero">
   <div class="hero-content">
     <h1>Encuentra la propiedad de tus sueños</h1>
-    <p>Casas y departamentos exclusivos</p>
+    <p>Casas y terrenos en las mejores zonas</p>
     <a href="#" class="btn-main">Explorar propiedades</a>
   </div>
 </div><div class="search-box">
-  <input id="busqueda" placeholder="Ubicación">
-  <select><option>Venta</option></select>
-  <button>Buscar</button>
+  <input id="busqueda" placeholder="Buscar ubicación...">
 </div><div class="container">
   <div class="cards" id="contenedor"></div>
 </div><div class="footer">
   <h3>Mi Dulce Hogar</h3>
   <p>Especialistas en bienes raíces</p>
-</div><script>
-const propiedades=[
-{
- nombre:"Casa moderna",
- ubicacion:"Ciudad Valles",
- precio:"$1,200,000",
- imagenes:["https://images.unsplash.com/photo-1568605114967-8130f3a36994"]
-},
-{
- nombre:"Residencia lujo",
- ubicacion:"San Luis",
- precio:"$3,500,000",
- imagenes:["https://images.unsplash.com/photo-1572120360610-d971b9d7767c"]
-}
-];
-
-let listaActual=propiedades;
+</div><!-- IMPORTANTE: TU ARCHIVO --><script src="propiedades.js"></script><script>
 const contenedor=document.getElementById("contenedor");
 const busqueda=document.getElementById("busqueda");
+
+let listaActual=[];
+const state={};
 
 function mostrar(lista){
  listaActual=lista;
  contenedor.innerHTML="";
- if(lista.length===0){contenedor.innerHTML="<p>No hay resultados</p>";return;}
+ if(lista.length===0){contenedor.innerHTML="<p>No hay propiedades</p>";return;}
 
- lista.forEach(p=>{
+ lista.forEach((p,i)=>{
+  state[i]={index:0};
+
   contenedor.innerHTML+=`
   <div class="card">
-    <div style="position:relative">
-      <img src="${p.imagenes[0]}">
+    <div class="slider">
+      <img id="img-${i}" src="${p.imagenes[0]}">
       <div class="badge">Venta</div>
+      <div class="nav left" onclick="prev(${i})">❮</div>
+      <div class="nav right" onclick="next(${i})">❯</div>
     </div>
     <div class="card-content">
       <h3>${p.nombre}</h3>
       <p>${p.ubicacion}</p>
       <div class="price">${p.precio}</div>
+      <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp || '')}" class="btn">Contactar</a>
     </div>
   </div>`;
  });
+}
+
+function updateSlider(i){
+ const p=listaActual[i];
+ const idx=state[i].index;
+ document.getElementById(`img-${i}`).src=p.imagenes[idx];
+}
+
+function next(i){
+ const p=listaActual[i];
+ state[i].index=(state[i].index+1)%p.imagenes.length;
+ updateSlider(i);
+}
+
+function prev(i){
+ const p=listaActual[i];
+ state[i].index--;
+ if(state[i].index<0) state[i].index=p.imagenes.length-1;
+ updateSlider(i);
 }
 
 busqueda.addEventListener("input",()=>{
@@ -151,6 +113,7 @@ busqueda.addEventListener("input",()=>{
  mostrar(filtradas);
 });
 
+// 🔥 AQUÍ SE CARGAN TUS PROPIEDADES
 mostrar(propiedades);
 </script></body>
 </html>
