@@ -1,274 +1,156 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Dulce Hogar</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --primary:#2563eb;
-}
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>
+:root{--primary:#2563eb;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f8fafc;}
+body{background:#f1f5f9;}
 
-/* HEADER */
 .header{
   background:#fff;
   padding:15px 20px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   border-bottom:1px solid #ddd;
 }
-.logo{font-weight:700;color:var(--primary);}
+.logo{font-weight:700;font-size:18px;}
 
-/* HERO */
 .hero{
-  height:300px;
-  background:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa') center/cover;
+  height:420px;
+  background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
   display:flex;
   align-items:center;
   justify-content:center;
+  position:relative;
 }
-
-.overlay{
+.hero::before{
+  content:"";
+  position:absolute;
+  width:100%;height:100%;
   background:rgba(0,0,0,0.5);
-  padding:25px;
-  border-radius:15px;
+}
+.hero-content{
+  position:relative;
+  color:#fff;
   text-align:center;
-  color:#fff;
 }
-
-.overlay input{
-  margin-top:10px;
-  padding:12px;
-  width:260px;
+.hero-content h1{font-size:38px;}
+.hero-content p{margin:15px 0;}
+.btn-main{
+  background:var(--primary);
+  padding:12px 25px;
   border-radius:10px;
-  border:none;
-}
-
-/* CONTENIDO */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:30px 20px;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-}
-
-.card{
-  border-radius:18px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 25px 50px rgba(0,0,0,0.15);
-}
-
-/* SLIDER */
-.slider{position:relative;}
-
-.slider img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-}
-
-/* overlay info */
-.info-img{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  padding:15px;
   color:#fff;
-  background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-}
-
-.price{
-  font-weight:700;
-  font-size:18px;
-}
-
-/* flechas */
-.nav{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.5);
-  color:#fff;
-  padding:5px 10px;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.nav.left{left:10px;}
-.nav.right{right:10px;}
-
-/* dots */
-.dots{
-  position:absolute;
-  bottom:8px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.dot{
-  height:8px;
-  width:8px;
-  margin:0 3px;
-  background:#ccc;
-  border-radius:50%;
-  display:inline-block;
-}
-
-.dot.active{
-  background:#fff;
-}
-
-/* info abajo */
-.card-content{
-  padding:15px;
-}
-
-.sub{
-  font-size:13px;
-  color:#64748b;
-}
-
-/* botón */
-.btn{
-  display:block;
-  margin-top:10px;
-  background:#25D366;
-  color:#fff;
-  padding:10px;
-  border-radius:10px;
-  text-align:center;
   text-decoration:none;
 }
-</style>
-</head>
 
-<body>
+.search-box{
+  background:#fff;
+  margin:-50px auto 20px;
+  padding:20px;
+  border-radius:20px;
+  max-width:900px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  display:grid;
+  gap:10px;
+}
+.search-box input,.search-box select, .search-box button{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+.search-box button{background:var(--primary);color:#fff;border:none;}
 
-<div class="header">
+.container{max-width:1200px;margin:auto;padding:30px 20px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+
+.card{
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.card img{width:100%;height:220px;object-fit:cover;}
+.badge{
+  position:absolute;top:10px;right:10px;
+  background:#fff;padding:5px 12px;border-radius:20px;font-size:12px;
+}
+.card-content{padding:15px;}
+.price{color:var(--primary);font-weight:700;font-size:20px;}
+
+.footer{
+  background:#0f172a;
+  color:#fff;
+  padding:40px 20px;
+  margin-top:40px;
+}
+</style></head><body><div class="header">
   <div class="logo">Mi Dulce Hogar</div>
-</div>
-
-<div class="hero">
-  <div class="overlay">
-    <h2>Encuentra tu propiedad ideal</h2>
-    <input type="text" id="busqueda" placeholder="Buscar ubicación...">
+</div><div class="hero">
+  <div class="hero-content">
+    <h1>Encuentra la propiedad de tus sueños</h1>
+    <p>Casas y departamentos exclusivos</p>
+    <a href="#" class="btn-main">Explorar propiedades</a>
   </div>
-</div>
-
-<div class="container">
+</div><div class="search-box">
+  <input id="busqueda" placeholder="Ubicación">
+  <select><option>Venta</option></select>
+  <button>Buscar</button>
+</div><div class="container">
   <div class="cards" id="contenedor"></div>
-</div>
+</div><div class="footer">
+  <h3>Mi Dulce Hogar</h3>
+  <p>Especialistas en bienes raíces</p>
+</div><script>
+const propiedades=[
+{
+ nombre:"Casa moderna",
+ ubicacion:"Ciudad Valles",
+ precio:"$1,200,000",
+ imagenes:["https://images.unsplash.com/photo-1568605114967-8130f3a36994"]
+},
+{
+ nombre:"Residencia lujo",
+ ubicacion:"San Luis",
+ precio:"$3,500,000",
+ imagenes:["https://images.unsplash.com/photo-1572120360610-d971b9d7767c"]
+}
+];
 
-<script src="propiedades.js"></script>
-
-<script>
+let listaActual=propiedades;
 const contenedor=document.getElementById("contenedor");
 const busqueda=document.getElementById("busqueda");
 
-const state={};
-
 function mostrar(lista){
-  contenedor.innerHTML="";
+ listaActual=lista;
+ contenedor.innerHTML="";
+ if(lista.length===0){contenedor.innerHTML="<p>No hay resultados</p>";return;}
 
-  lista.forEach((p,i)=>{
-    state[i]={index:0};
-
-    contenedor.innerHTML+=`
-    <div class="card">
-      
-      <div class="slider"
-        ontouchstart="touchStart(event,${i})"
-        ontouchend="touchEnd(event,${i})">
-
-        <img id="img-${i}" src="${p.imagenes[0]}">
-
-        <div class="nav left" onclick="prev(${i})">❮</div>
-        <div class="nav right" onclick="next(${i})">❯</div>
-
-        <div class="info-img">
-          <div class="price">${p.precio}</div>
-          <div>${p.nombre}</div>
-          <div class="sub">${p.ubicacion}</div>
-        </div>
-
-        <div class="dots" id="dots-${i}">
-          ${p.imagenes.map((_,d)=>`<span class="dot ${d===0?'active':''}"></span>`).join("")}
-        </div>
-      </div>
-
-      <div class="card-content">
-        <div class="sub">${p.terreno || ""}</div>
-
-        ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>`:""}
-
-        <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
-      </div>
-    </div>`;
-  });
-}
-
-function updateSlider(i){
-  const p=propiedades[i];
-  const idx=state[i].index;
-
-  document.getElementById(`img-${i}`).src=p.imagenes[idx];
-
-  const dots=document.querySelectorAll(`#dots-${i} .dot`);
-  dots.forEach(d=>d.classList.remove("active"));
-  if(dots[idx]) dots[idx].classList.add("active");
-}
-
-function next(i){
-  const p=propiedades[i];
-  state[i].index=(state[i].index+1)%p.imagenes.length;
-  updateSlider(i);
-}
-
-function prev(i){
-  const p=propiedades[i];
-  state[i].index--;
-  if(state[i].index<0) state[i].index=p.imagenes.length-1;
-  updateSlider(i);
-}
-
-let startX=0;
-
-function touchStart(e){
-  startX=e.changedTouches[0].screenX;
-}
-
-function touchEnd(e,i){
-  let endX=e.changedTouches[0].screenX;
-  if(startX-endX>50) next(i);
-  if(endX-startX>50) prev(i);
+ lista.forEach(p=>{
+  contenedor.innerHTML+=`
+  <div class="card">
+    <div style="position:relative">
+      <img src="${p.imagenes[0]}">
+      <div class="badge">Venta</div>
+    </div>
+    <div class="card-content">
+      <h3>${p.nombre}</h3>
+      <p>${p.ubicacion}</p>
+      <div class="price">${p.precio}</div>
+    </div>
+  </div>`;
+ });
 }
 
 busqueda.addEventListener("input",()=>{
-  const valor=busqueda.value.toLowerCase();
-  const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(valor));
-  mostrar(filtradas);
+ const val=busqueda.value.toLowerCase();
+ const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(val));
+ mostrar(filtradas);
 });
 
 mostrar(propiedades);
-</script>
-
-</body>
+</script></body>
 </html>
