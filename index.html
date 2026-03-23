@@ -2,97 +2,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Dulce Hogar | Inmobiliaria</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><style>
+<title>Mi Dulce Hogar</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
 :root{
-  --azul:#1e3a5f;
-  --gris:#f8fafc;
-  --texto:#1f2937;
-  --borde:#e5e7eb;
-  --rojo:#ef4444;
+  --primary:#2563eb;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --text:#0f172a;
+  --sub:#64748b;
+  --border:#e2e8f0;
 }
+
+*{box-sizing:border-box;transition:.2s ease;}
 
 body{
   margin:0;
   font-family:'Inter',sans-serif;
-  background:var(--gris);
-  color:var(--texto);
+  background:var(--bg);
+  color:var(--text);
 }
 
 .header{
   background:#fff;
-  padding:18px 30px;
+  padding:15px 30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid var(--borde);
-  position:sticky;
-  top:0;
-  z-index:100;
+  border-bottom:1px solid var(--border);
 }
 
-.logo{
-  font-weight:700;
-  font-size:1.2rem;
-  color:var(--azul);
-}
+.logo{font-weight:700;}
+.menu{font-size:14px;color:var(--sub);}
 
 .container{
   display:flex;
   max-width:1300px;
   margin:auto;
-  gap:30px;
-  padding:40px;
+  padding:30px;
+  gap:25px;
 }
 
 .sidebar{
   width:260px;
   background:#fff;
   padding:20px;
-  border-radius:16px;
-  border:1px solid var(--borde);
-}
-
-.sidebar h3{
-  margin-top:0;
-  font-size:1rem;
+  border-radius:14px;
+  border:1px solid var(--border);
 }
 
 .sidebar input,.sidebar select{
   width:100%;
   padding:12px;
-  margin:10px 0;
+  margin:8px 0;
   border-radius:10px;
-  border:1px solid var(--borde);
-  background:#fff;
+  border:1px solid var(--border);
 }
 
 .content{flex:1;}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:35px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
 .card{
   background:#fff;
-  border-radius:20px;
+  border-radius:16px;
   overflow:hidden;
-  border:1px solid var(--borde);
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
-  transition:0.25s;
-  cursor:pointer;
+  border:1px solid var(--border);
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.1);
+  transform:translateY(-4px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-.slider{
-  height:240px;
-  position:relative;
-}
+.slider{height:180px;position:relative;}
 
 .slide{
   position:absolute;
@@ -100,63 +85,51 @@ body{
   height:100%;
   object-fit:cover;
   opacity:0;
-  transition:.4s;
 }
 
 .slide.active{opacity:1;}
 
 .badge{
   position:absolute;
-  top:12px;
-  left:12px;
-  background:var(--rojo);
+  top:10px;
+  left:10px;
+  background:#ef4444;
   color:#fff;
-  padding:6px 12px;
-  border-radius:10px;
   font-size:12px;
-  font-weight:600;
+  padding:4px 10px;
+  border-radius:999px;
 }
 
-.card-content{
-  padding:25px;
-}
+.card-content{padding:15px;}
 
 .precio{
-  font-size:1.9rem;
+  font-size:1.4rem;
   font-weight:700;
-  color:var(--rojo);
-}
-
-h3{
-  margin:10px 0;
-  font-size:1.05rem;
 }
 
 .ubicacion{
-  color:#6b7280;
   font-size:13px;
+  color:var(--sub);
 }
 
-.detalle{
+.info{
+  display:flex;
+  gap:15px;
   font-size:13px;
-  margin-top:5px;
+  color:var(--sub);
+  margin-top:8px;
 }
 
 .btn{
   display:block;
-  background:var(--azul);
+  background:var(--primary);
   color:#fff;
   text-align:center;
-  padding:12px;
-  border-radius:12px;
-  margin-top:15px;
+  padding:10px;
+  border-radius:10px;
+  margin-top:12px;
   text-decoration:none;
-  font-weight:600;
-  transition:0.2s;
-}
-
-.btn:hover{
-  transform:scale(1.03);
+  font-size:14px;
 }
 
 .modal{
@@ -165,7 +138,7 @@ h3{
   left:0;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.5);
   display:none;
   justify-content:center;
   align-items:center;
@@ -174,20 +147,20 @@ h3{
 .modal-content{
   background:#fff;
   width:90%;
-  max-width:600px;
-  border-radius:20px;
-  padding:30px;
+  max-width:500px;
+  border-radius:16px;
+  padding:20px;
 }
 
 @media(max-width:900px){
-  .container{flex-direction:column;padding:20px;}
+  .container{flex-direction:column;}
   .sidebar{width:100%;}
 }
 </style></head><body><div class="header">
   <div class="logo">Mi Dulce Hogar</div>
+  <div class="menu">Comprar · Rentar · Contacto</div>
 </div><div class="container"><div class="sidebar">
-  <h3>Filtros</h3>
-  <input id="buscador" placeholder="Buscar propiedad...">
+  <input id="buscador" placeholder="Buscar...">
   <select id="tipo">
     <option value="">Tipo</option>
     <option value="casa">Casa</option>
@@ -211,14 +184,16 @@ function mostrar(lista){
     contenedor.innerHTML+=`
     <div class="card" onclick='abrirModal(${JSON.stringify(p)})'>
       <div class="slider">
-        ${p.destacado?'<span class="badge">🔥 Destacado</span>':''}
+        ${p.destacado?'<span class="badge">Destacado</span>':''}
         ${p.imagenes.map((img,i)=>`<img src="${img}" class="slide ${i===0?'active':''}">`).join('')}
       </div>
       <div class="card-content">
         <div class="precio">${p.precio}</div>
-        <h3>${p.nombre}</h3>
+        <div>${p.nombre}</div>
         <div class="ubicacion">📍 ${p.ubicacion}</div>
-        <div class="detalle">📐 ${p.terreno}</div>
+        <div class="info">
+          <span>📐 ${p.terreno}</span>
+        </div>
         <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
       </div>
     </div>`;
@@ -246,7 +221,7 @@ function abrirModal(p){
   modal.style.display="flex";
   modalContent.innerHTML=`
     <h2>${p.nombre}</h2>
-    <p><strong>Precio:</strong> ${p.precio}</p>
+    <p><strong>${p.precio}</strong></p>
     <p>${p.ubicacion}</p>
     <p>${p.terreno}</p>
     <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
