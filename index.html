@@ -29,18 +29,16 @@ body{background:var(--bg);}
 
 .logo{font-weight:700;color:var(--primary);}
 
-/* FILTROS */
+/* FILTRO */
 .filtros{
   padding:15px;
-  display:flex;
-  gap:10px;
 }
 
 .filtros input{
+  width:100%;
   padding:10px;
   border-radius:10px;
   border:1px solid #ccc;
-  width:100%;
 }
 
 /* CONTENIDO */
@@ -60,16 +58,7 @@ body{background:var(--bg);}
   background:#fff;
   border-radius:15px;
   overflow:hidden;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.card:hover{transform:scale(1.02);}
-
-.card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
 }
 
 .card-content{padding:15px;}
@@ -81,40 +70,58 @@ body{background:var(--bg);}
 
 .sub{color:var(--sub);font-size:13px;}
 
-/* DETALLE */
-.detalle{display:none;}
-.detalle.active{display:block;}
+/* SLIDER */
+.slider{position:relative;}
 
-.galeria{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:10px;
-}
-
-.galeria img{
+.slider img{
   width:100%;
-  border-radius:10px;
+  height:220px;
+  object-fit:cover;
 }
 
-.info{
-  background:#fff;
-  padding:20px;
-  margin-top:20px;
-  border-radius:15px;
-}
-
-.volver{
-  margin-bottom:15px;
+/* flechas */
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  padding:5px 10px;
+  border-radius:50%;
   cursor:pointer;
-  color:var(--primary);
 }
 
+.nav.left{left:10px;}
+.nav.right{right:10px;}
+
+/* dots */
+.dots{
+  position:absolute;
+  bottom:8px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.dot{
+  height:8px;
+  width:8px;
+  margin:0 3px;
+  background:#ccc;
+  border-radius:50%;
+  display:inline-block;
+}
+
+.dot.active{
+  background:#fff;
+}
+
+/* botón */
 .btn{
   display:block;
-  margin-top:15px;
+  margin-top:10px;
   background:var(--primary);
   color:#fff;
-  padding:12px;
+  padding:10px;
   border-radius:10px;
   text-align:center;
   text-decoration:none;
@@ -132,72 +139,104 @@ body{background:var(--bg);}
   <input type="text" id="busqueda" placeholder="Buscar ubicación...">
 </div>
 
-<div class="container" id="listado">
+<div class="container">
   <div class="cards" id="contenedor"></div>
 </div>
-
-<div class="container detalle" id="detalle"></div>
 
 <!-- IMPORTANTE -->
 <script src="propiedades.js"></script>
 
 <script>
 const contenedor=document.getElementById("contenedor");
-const detalle=document.getElementById("detalle");
-const listado=document.getElementById("listado");
 const busqueda=document.getElementById("busqueda");
+
+const state={};
 
 function mostrar(lista){
   contenedor.innerHTML="";
+
   lista.forEach((p,i)=>{
+    state[i]={index:0};
+
     contenedor.innerHTML+=`
-    <div class="card" onclick="verDetalle(${i})">
-      <img src="${p.imagenes[0]}">
+    <div class="card">
+      
+      <div class="slider"
+        ontouchstart="touchStart(event,${i})"
+        ontouchend="touchEnd(event,${i})">
+
+        <img id="img-${i}" src="${p.imagenes[0]}">
+
+        <div class="nav left" onclick="prev(${i})">❮</div>
+        <div class="nav right" onclick="next(${i})">❯</div>
+
+        <div class="dots" id="dots-${i}">
+          ${p.imagenes.map((_,d)=>`<span class="dot ${d===0?'active':''}"></span>`).join("")}
+        </div>
+      </div>
+
       <div class="card-content">
         <div class="price">${p.precio}</div>
         <div>${p.nombre}</div>
         <div class="sub">${p.ubicacion}</div>
+        <div class="sub">${p.terreno || ""}</div>
+
+        ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>`:""}
+
+        <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
       </div>
     </div>`;
   });
 }
 
-function verDetalle(i){
+function updateSlider(i){
   const p=propiedades[i];
-  listado.style.display="none";
-  detalle.classList.add("active");
+  const idx=state[i].index;
 
-  detalle.innerHTML=`
-    <div class="volver" onclick="regresar()">← Volver</div>
+  document.getElementById(`img-${i}`).src=p.imagenes[idx];
 
-    <div class="galeria">
-      <img src="${p.imagenes[0]}">
-      <div>
-        ${p.imagenes.map(img=>`<img src="${img}" style="margin-bottom:10px;">`).join("")}
-      </div>
-    </div>
-
-    <div class="info">
-      <h2>${p.nombre}</h2>
-      <p><strong>${p.precio}</strong></p>
-      <p>${p.ubicacion}</p>
-      <p>${p.terreno || ""}</p>
-      ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>`:""}
-      <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
-    </div>
-  `;
+  const dots=document.querySelectorAll(`#dots-${i} .dot`);
+  dots.forEach(d=>d.classList.remove("active"));
+  if(dots[idx]) dots[idx].classList.add("active");
 }
 
-function regresar(){
-  detalle.classList.remove("active");
-  listado.style.display="block";
+function next(i){
+  const p=propiedades[i];
+  state[i].index=(state[i].index+1)%p.imagenes.length;
+  updateSlider(i);
 }
 
+function prev(i){
+  const p=propiedades[i];
+  state[i].index--;
+  if(state[i].index<0) state[i].index=p.imagenes.length-1;
+  updateSlider(i);
+}
+
+// swipe
+let startX=0;
+
+function touchStart(e,i){
+  startX=e.changedTouches[0].screenX;
+}
+
+function touchEnd(e,i){
+  let endX=e.changedTouches[0].screenX;
+  if(startX-endX>50) next(i);
+  if(endX-startX>50) prev(i);
+}
+
+// filtro
 busqueda.addEventListener("input",()=>{
   const valor=busqueda.value.toLowerCase();
   const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(valor));
   mostrar(filtradas);
 });
+
+// autoplay
+setInterval(()=>{
+  propiedades.forEach((_,i)=>next(i));
+},5000);
 
 mostrar(propiedades);
 </script>
