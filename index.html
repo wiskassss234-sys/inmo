@@ -3,45 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Dulce Hogar | Plataforma</title>
+<title>Mi Dulce Hogar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --primary:#3b82f6;
-  --bg:#f1f5f9;
+  --primary:#2563eb;
+  --bg:#f8fafc;
   --text:#1e293b;
   --sub:#64748b;
-  --border:#e2e8f0;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
-body{background:var(--bg);} 
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:var(--bg);}
 
-.header{display:flex;justify-content:space-between;align-items:center;padding:15px 25px;background:#fff;border-bottom:1px solid var(--border);} 
-.logo{font-weight:700;color:var(--primary);} 
-
-.container{max-width:1200px;margin:auto;padding:20px;} 
-
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;} 
-
-.card{cursor:pointer;} 
-.img-box{border-radius:16px;overflow:hidden;} 
-.img-box img{width:100%;height:220px;object-fit:cover;} 
-
-.card-content{margin-top:10px;} 
-.price{font-weight:700;} 
-.sub{color:var(--sub);font-size:13px;} 
-
-.btn{display:block;margin-top:10px;background:var(--primary);color:#fff;padding:10px;text-align:center;border-radius:10px;text-decoration:none;} 
-
-/* PAGINA INDIVIDUAL */
-.detalle{
-  display:none;
+/* HEADER */
+.header{
+  background:#fff;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #ddd;
 }
 
-.detalle.active{display:block;} 
+.logo{font-weight:700;color:var(--primary);}
+
+/* FILTROS */
+.filtros{
+  padding:15px;
+  display:flex;
+  gap:10px;
+}
+
+.filtros input{
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  width:100%;
+}
+
+/* CONTENIDO */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:hover{transform:scale(1.02);}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card-content{padding:15px;}
+
+.price{
+  font-weight:700;
+  color:var(--primary);
+}
+
+.sub{color:var(--sub);font-size:13px;}
+
+/* DETALLE */
+.detalle{display:none;}
+.detalle.active{display:block;}
 
 .galeria{
   display:grid;
@@ -51,16 +93,14 @@ body{background:var(--bg);}
 
 .galeria img{
   width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:12px;
+  border-radius:10px;
 }
 
-.info-detalle{
-  margin-top:20px;
+.info{
   background:#fff;
   padding:20px;
-  border-radius:16px;
+  margin-top:20px;
+  border-radius:15px;
 }
 
 .volver{
@@ -69,6 +109,16 @@ body{background:var(--bg);}
   color:var(--primary);
 }
 
+.btn{
+  display:block;
+  margin-top:15px;
+  background:var(--primary);
+  color:#fff;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  text-decoration:none;
+}
 </style>
 </head>
 
@@ -78,27 +128,31 @@ body{background:var(--bg);}
   <div class="logo">Mi Dulce Hogar</div>
 </div>
 
+<div class="filtros">
+  <input type="text" id="busqueda" placeholder="Buscar ubicación...">
+</div>
+
 <div class="container" id="listado">
   <div class="cards" id="contenedor"></div>
 </div>
 
 <div class="container detalle" id="detalle"></div>
 
+<!-- IMPORTANTE -->
 <script src="propiedades.js"></script>
 
 <script>
 const contenedor=document.getElementById("contenedor");
 const detalle=document.getElementById("detalle");
 const listado=document.getElementById("listado");
+const busqueda=document.getElementById("busqueda");
 
-function mostrar(){
+function mostrar(lista){
   contenedor.innerHTML="";
-  propiedades.forEach((p,i)=>{
+  lista.forEach((p,i)=>{
     contenedor.innerHTML+=`
     <div class="card" onclick="verDetalle(${i})">
-      <div class="img-box">
-        <img src="${p.imagenes[0]}">
-      </div>
+      <img src="${p.imagenes[0]}">
       <div class="card-content">
         <div class="price">${p.precio}</div>
         <div>${p.nombre}</div>
@@ -119,16 +173,16 @@ function verDetalle(i){
     <div class="galeria">
       <img src="${p.imagenes[0]}">
       <div>
-        ${(p.imagenes.slice(1,5).map(img=>`<img src="${img}" style="margin-bottom:10px;">`).join(''))}
+        ${p.imagenes.map(img=>`<img src="${img}" style="margin-bottom:10px;">`).join("")}
       </div>
     </div>
 
-    <div class="info-detalle">
+    <div class="info">
       <h2>${p.nombre}</h2>
       <p><strong>${p.precio}</strong></p>
       <p>${p.ubicacion}</p>
-      <p>${p.terreno}</p>
-      ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join('')}</ul>`:''}
+      <p>${p.terreno || ""}</p>
+      ${p.extra?`<ul>${p.extra.map(e=>`<li>${e}</li>`).join("")}</ul>`:""}
       <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp)}" class="btn">Contactar</a>
     </div>
   `;
@@ -139,7 +193,13 @@ function regresar(){
   listado.style.display="block";
 }
 
-mostrar();
+busqueda.addEventListener("input",()=>{
+  const valor=busqueda.value.toLowerCase();
+  const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(valor));
+  mostrar(filtradas);
+});
+
+mostrar(propiedades);
 </script>
 
 </body>
