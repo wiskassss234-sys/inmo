@@ -26,17 +26,64 @@ body{
 
 /* HEADER */
 .header{
-  background: rgba(255,255,255,0.8);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: rgba(255,255,255,0.9);
   backdrop-filter: blur(10px);
-  position: sticky;
+  padding:15px 20px;
+  position:sticky;
   top:0;
   z-index:100;
-  padding:15px 20px;
-  border-bottom:1px solid #ddd;
 }
 
 .logo{
   font-weight:700;
+  font-size:18px;
+}
+
+.logo span{
+  color:var(--primary);
+}
+
+.menu-btn{
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* MENÚ */
+.menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:80%;
+  height:100%;
+  background:#fff;
+  padding:30px 20px;
+  transition:.3s;
+  z-index:200;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.menu.active{
+  right:0;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#111;
+  font-size:18px;
+}
+
+.contacto{
+  margin-top:20px;
+  background:var(--primary);
+  color:#fff !important;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
 }
 
 /* HERO */
@@ -58,26 +105,22 @@ body{
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.5);
-  top:0;
-  left:0;
 }
 
-.hero h1{
+.hero h1,
+.hero p,
+.hero a{
   position:relative;
   z-index:2;
 }
 
 .hero p{
-  position:relative;
-  z-index:2;
   margin-top:10px;
 }
 
 .hero a{
-  position:relative;
-  z-index:2;
   margin-top:15px;
-  background:#2563eb;
+  background:var(--primary);
   padding:10px 20px;
   border-radius:10px;
   color:#fff;
@@ -93,9 +136,6 @@ body{
   border-radius:15px;
   max-width:800px;
   box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  border:1px solid rgba(255,255,255,0.3);
-  position:relative;
-  z-index:10;
 }
 
 .search-box input{
@@ -130,7 +170,6 @@ body{
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  backdrop-filter: blur(4px);
 }
 
 .card:hover{
@@ -138,7 +177,6 @@ body{
   box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
-/* IMAGEN */
 .img-box{
   position:relative;
 }
@@ -147,11 +185,6 @@ body{
   width:100%;
   height:220px;
   object-fit:cover;
-  transition: transform .4s ease;
-}
-
-.card:hover .img-box img{
-  transform: scale(1.05);
 }
 
 /* BADGE */
@@ -164,7 +197,6 @@ body{
   padding:6px 14px;
   border-radius:20px;
   font-size:12px;
-  font-weight:600;
 }
 
 /* FAVORITO */
@@ -175,7 +207,6 @@ body{
   background:#fff;
   border-radius:50%;
   padding:6px;
-  cursor:pointer;
 }
 
 /* INFO */
@@ -209,7 +240,6 @@ body{
   display:flex;
   gap:15px;
   font-size:14px;
-  color:#475569;
   margin-bottom:12px;
 }
 
@@ -220,7 +250,6 @@ body{
   margin-bottom:12px;
 }
 
-/* BOTÓN */
 .btn{
   display:block;
   background:linear-gradient(135deg,#2563eb,#1d4ed8);
@@ -229,15 +258,6 @@ body{
   border-radius:12px;
   text-align:center;
   text-decoration:none;
-  font-weight:600;
-}
-
-.btn:hover{
-  transform:scale(1.03);
-}
-
-.btn:active{
-  transform:scale(0.97);
 }
 
 /* FOOTER */
@@ -253,13 +273,25 @@ body{
 <body>
 
 <div class="header">
-  <div class="logo">Mi Dulce Hogar</div>
+  <div class="logo">
+    Inmobiliaria <span>Mi Dulce Hogar</span>
+  </div>
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div id="menu" class="menu">
+  <a href="#">Inicio</a>
+  <a href="#">Propiedades</a>
+  <a href="#">Servicios</a>
+  <a href="#">Agencia</a>
+  <a href="#">Calculadora</a>
+  <a href="#" class="contacto">Contáctanos</a>
 </div>
 
 <div class="hero">
   <h1>Encuentra tu propiedad ideal</h1>
-  <p>Casas, terrenos y más en la Huasteca</p>
-  <a href="#contenedor">Ver propiedades</a>
+  <p>Casas y terrenos en las mejores zonas</p>
+  <a href="#contenedor">Explorar propiedades</a>
 </div>
 
 <div class="search-box">
@@ -271,42 +303,34 @@ body{
 </div>
 
 <div class="footer">
-  Mi Dulce Hogar
+  Inmobiliaria Mi Dulce Hogar
 </div>
 
 <script src="propiedades.js"></script>
 
 <script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
 const contenedor=document.getElementById("contenedor");
 const busqueda=document.getElementById("busqueda");
 
-let listaActual=[];
-
 function mostrar(lista){
-  listaActual=lista;
   contenedor.innerHTML="";
 
-  if(lista.length===0){
-    contenedor.innerHTML="<p>No hay propiedades</p>";
-    return;
-  }
-
-  lista.forEach((p,i)=>{
+  lista.forEach(p=>{
     contenedor.innerHTML+=`
     <div class="card">
-
       <div class="img-box">
         <img src="${p.imagenes[0]}">
-
         <div class="badge">Venta</div>
         <div class="fav">❤️</div>
       </div>
 
       <div class="info">
         <div class="zona">${p.zona || p.ubicacion}</div>
-
         <div class="titulo">${p.nombre}</div>
-
         <div class="desc">${p.descripcion || ""}</div>
 
         <div class="datos">
@@ -323,7 +347,6 @@ function mostrar(lista){
           Contactar
         </a>
       </div>
-
     </div>`;
   });
 }
