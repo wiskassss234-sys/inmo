@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora</title>
+<style>
+body{font-family:Inter;background:#f1f5f9}
+.box{
+background:#fff;
+padding:20px;
+max-width:400px;
+margin:auto;
+border-radius:15px;
+}
+input,button{
+width:100%;
+margin-top:10px;
+padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Calculadora Hipotecaria</h2>
+
+<input id="precio" value="3000000">
+<input id="enganche" value="20">
+<input id="interes" value="9">
+<input id="anos" value="20">
+
+<button onclick="calcular()">Calcular</button>
+
+<h3 id="resultado">$0</h3>
+</div>
+
+<script>
+function calcular(){
+let p=precio.value;
+let e=enganche.value/100;
+let i=interes.value/100/12;
+let n=anos.value*12;
+
+let m=p*(1-e);
+let pago=m*(i*Math.pow(1+i,n))/(Math.pow(1+i,n)-1);
+
+resultado.innerText="$"+pago.toFixed(0);
+}
+</script>
+
+</body>
+</html>
