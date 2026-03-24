@@ -44,10 +44,12 @@ body{
   height:350px;
   background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
   color:#fff;
   position:relative;
+  text-align:center;
 }
 
 .hero::before{
@@ -63,6 +65,23 @@ body{
 .hero h1{
   position:relative;
   z-index:2;
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+  margin-top:10px;
+}
+
+.hero a{
+  position:relative;
+  z-index:2;
+  margin-top:15px;
+  background:#2563eb;
+  padding:10px 20px;
+  border-radius:10px;
+  color:#fff;
+  text-decoration:none;
 }
 
 /* BUSCADOR */
@@ -96,31 +115,22 @@ body{
 .container{
   max-width:1200px;
   margin:auto;
-  padding:20px;
+  padding:30px 20px 80px;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+  gap:30px;
 }
 
 /* CARD */
 .card{
-  background:#fff;
+  background: rgba(255,255,255,0.95);
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp .5s ease forwards;
-}
-
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  backdrop-filter: blur(4px);
 }
 
 .card:hover{
@@ -157,24 +167,20 @@ body{
   font-weight:600;
 }
 
-/* FLECHAS */
-.nav{
+/* FAVORITO */
+.fav{
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,0.5);
-  color:#fff;
-  padding:5px 10px;
+  top:10px;
+  left:10px;
+  background:#fff;
   border-radius:50%;
+  padding:6px;
   cursor:pointer;
 }
 
-.nav.left{left:10px;}
-.nav.right{right:10px;}
-
 /* INFO */
 .info{
-  padding:18px;
+  padding:20px;
 }
 
 .zona{
@@ -185,13 +191,18 @@ body{
 .titulo{
   font-size:18px;
   font-weight:700;
-  margin:5px 0 10px;
+  margin:8px 0 12px;
 }
 
 .desc{
   font-size:14px;
   color:#555;
-  margin-bottom:10px;
+  margin-bottom:14px;
+  line-height:1.6;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 
 .datos{
@@ -199,25 +210,26 @@ body{
   gap:15px;
   font-size:14px;
   color:#475569;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .precio{
   font-size:22px;
   font-weight:700;
   color:var(--primary);
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 /* BOTÓN */
 .btn{
   display:block;
-  background:var(--primary);
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
   color:#fff;
   padding:12px;
   border-radius:12px;
   text-align:center;
   text-decoration:none;
+  font-weight:600;
 }
 
 .btn:hover{
@@ -232,8 +244,8 @@ body{
 .footer{
   background:#0f172a;
   color:#fff;
-  padding:30px;
-  margin-top:40px;
+  padding:40px 30px;
+  margin-top:60px;
 }
 </style>
 </head>
@@ -246,6 +258,8 @@ body{
 
 <div class="hero">
   <h1>Encuentra tu propiedad ideal</h1>
+  <p>Casas, terrenos y más en la Huasteca</p>
+  <a href="#contenedor">Ver propiedades</a>
 </div>
 
 <div class="search-box">
@@ -267,7 +281,6 @@ const contenedor=document.getElementById("contenedor");
 const busqueda=document.getElementById("busqueda");
 
 let listaActual=[];
-const state={};
 
 function mostrar(lista){
   listaActual=lista;
@@ -279,32 +292,14 @@ function mostrar(lista){
   }
 
   lista.forEach((p,i)=>{
-    state[i]={index:0};
-
     contenedor.innerHTML+=`
     <div class="card">
 
       <div class="img-box">
-        <img id="img-${i}" src="${p.imagenes[0]}">
+        <img src="${p.imagenes[0]}">
 
         <div class="badge">Venta</div>
-
-        ${p.imagenes.length > 1 ? `
-          <div class="nav left" onclick="prev(${i})">❮</div>
-          <div class="nav right" onclick="next(${i})">❯</div>
-        ` : ''}
-
-        <div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:5px;">
-          ${p.imagenes.map((_,index)=>`
-            <div style="
-              width:8px;
-              height:8px;
-              border-radius:50%;
-              background:${index===0?'#fff':'rgba(255,255,255,0.5)'};
-            "></div>
-          `).join('')}
-        </div>
-
+        <div class="fav">❤️</div>
       </div>
 
       <div class="info">
@@ -331,25 +326,6 @@ function mostrar(lista){
 
     </div>`;
   });
-}
-
-function updateSlider(i){
-  const p=listaActual[i];
-  const idx=state[i].index;
-  document.getElementById(`img-${i}`).src=p.imagenes[idx];
-}
-
-function next(i){
-  const p=listaActual[i];
-  state[i].index=(state[i].index+1)%p.imagenes.length;
-  updateSlider(i);
-}
-
-function prev(i){
-  const p=listaActual[i];
-  state[i].index--;
-  if(state[i].index<0) state[i].index=p.imagenes.length-1;
-  updateSlider(i);
 }
 
 busqueda.addEventListener("input",()=>{
