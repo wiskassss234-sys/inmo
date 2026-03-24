@@ -17,15 +17,20 @@
   padding:0;
   box-sizing:border-box;
   font-family:'Inter',sans-serif;
+  transition: all .2s ease;
 }
 
 body{
-  background:#f1f5f9;
+  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
 }
 
 /* HEADER */
 .header{
-  background:#fff;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top:0;
+  z-index:100;
   padding:15px 20px;
   border-bottom:1px solid #ddd;
 }
@@ -43,7 +48,6 @@ body{
   justify-content:center;
   color:#fff;
   position:relative;
-  z-index:1;
 }
 
 .hero::before{
@@ -54,7 +58,6 @@ body{
   background:rgba(0,0,0,0.5);
   top:0;
   left:0;
-  z-index:0;
 }
 
 .hero h1{
@@ -64,21 +67,29 @@ body{
 
 /* BUSCADOR */
 .search-box{
-  background:#fff;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
   margin:-40px auto 20px;
   padding:20px;
   border-radius:15px;
   max-width:800px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  border:1px solid rgba(255,255,255,0.3);
   position:relative;
   z-index:10;
 }
 
 .search-box input{
   width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  outline:none;
+}
+
+.search-box input:focus{
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(37,99,235,0.2);
 }
 
 /* CONTENIDO */
@@ -99,8 +110,17 @@ body{
   background:#fff;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  transition:all .3s ease;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .5s ease forwards;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .card:hover{
@@ -117,6 +137,11 @@ body{
   width:100%;
   height:220px;
   object-fit:cover;
+  transition: transform .4s ease;
+}
+
+.card:hover .img-box img{
+  transform: scale(1.05);
 }
 
 /* BADGE */
@@ -163,6 +188,12 @@ body{
   margin:5px 0 10px;
 }
 
+.desc{
+  font-size:14px;
+  color:#555;
+  margin-bottom:10px;
+}
+
 .datos{
   display:flex;
   gap:15px;
@@ -187,6 +218,14 @@ body{
   border-radius:12px;
   text-align:center;
   text-decoration:none;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+}
+
+.btn:active{
+  transform:scale(0.97);
 }
 
 /* FOOTER */
@@ -255,12 +294,25 @@ function mostrar(lista){
           <div class="nav right" onclick="next(${i})">❯</div>
         ` : ''}
 
+        <div style="position:absolute; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:5px;">
+          ${p.imagenes.map((_,index)=>`
+            <div style="
+              width:8px;
+              height:8px;
+              border-radius:50%;
+              background:${index===0?'#fff':'rgba(255,255,255,0.5)'};
+            "></div>
+          `).join('')}
+        </div>
+
       </div>
 
       <div class="info">
         <div class="zona">${p.zona || p.ubicacion}</div>
 
         <div class="titulo">${p.nombre}</div>
+
+        <div class="desc">${p.descripcion || ""}</div>
 
         <div class="datos">
           ${p.habitaciones ? `🛏️ ${p.habitaciones}` : ''}
