@@ -43,7 +43,7 @@ body{
   justify-content:center;
   color:#fff;
   position:relative;
-  z-index:1; /* 👈 agregado */
+  z-index:1;
 }
 
 .hero::before{
@@ -52,10 +52,14 @@ body{
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.5);
+  top:0;
+  left:0;
+  z-index:0;
 }
 
 .hero h1{
   position:relative;
+  z-index:2;
 }
 
 /* BUSCADOR */
@@ -66,9 +70,8 @@ body{
   border-radius:15px;
   max-width:800px;
   box-shadow:0 10px 30px rgba(0,0,0,0.1);
-
-  position:relative; /* 👈 agregado */
-  z-index:10;        /* 👈 agregado */
+  position:relative;
+  z-index:10;
 }
 
 .search-box input{
@@ -96,12 +99,13 @@ body{
   background:#fff;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,0.1);
-  transition:.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:all .3s ease;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 /* IMAGEN */
@@ -120,10 +124,12 @@ body{
   position:absolute;
   top:10px;
   right:10px;
-  background:#fff;
-  padding:5px 12px;
+  background:#22c55e;
+  color:#fff;
+  padding:6px 14px;
   border-radius:20px;
   font-size:12px;
+  font-weight:600;
 }
 
 /* FLECHAS */
@@ -204,7 +210,7 @@ body{
 </div>
 
 <div class="search-box">
-  <input id="busqueda" placeholder="Buscar ubicación...">
+  <input id="busqueda" placeholder="Buscar ubicación, zona o nombre...">
 </div>
 
 <div class="container">
@@ -244,8 +250,11 @@ function mostrar(lista){
 
         <div class="badge">Venta</div>
 
-        <div class="nav left" onclick="prev(${i})">❮</div>
-        <div class="nav right" onclick="next(${i})">❯</div>
+        ${p.imagenes.length > 1 ? `
+          <div class="nav left" onclick="prev(${i})">❮</div>
+          <div class="nav right" onclick="next(${i})">❯</div>
+        ` : ''}
+
       </div>
 
       <div class="info">
@@ -261,7 +270,9 @@ function mostrar(lista){
 
         <div class="precio">${p.precio}</div>
 
-        <a href="https://wa.me/524444917754?text=${encodeURIComponent(p.whatsapp || '')}" class="btn">
+        <a href="https://wa.me/524444917754?text=${encodeURIComponent(
+          p.whatsapp || `Hola, me interesa la propiedad: ${p.nombre}`
+        )}" class="btn">
           Contactar
         </a>
       </div>
@@ -291,7 +302,13 @@ function prev(i){
 
 busqueda.addEventListener("input",()=>{
   const val=busqueda.value.toLowerCase();
-  const filtradas=propiedades.filter(p=>p.ubicacion.toLowerCase().includes(val));
+
+  const filtradas = propiedades.filter(p =>
+    (p.ubicacion && p.ubicacion.toLowerCase().includes(val)) ||
+    (p.zona && p.zona.toLowerCase().includes(val)) ||
+    (p.nombre && p.nombre.toLowerCase().includes(val))
+  );
+
   mostrar(filtradas);
 });
 
