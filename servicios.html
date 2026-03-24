@@ -8,51 +8,165 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{--primary:#2563eb;}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background: linear-gradient(180deg,#f1f5f9,#e2e8f0);}
+:root{
+  --primary:#2563eb;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  transition:.25s ease;
+}
+
+body{
+  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+  letter-spacing:0.2px;
+}
 
 /* HEADER */
 .header{
-display:flex;justify-content:space-between;align-items:center;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
-padding:15px 20px;position:sticky;top:0;z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  padding:15px 20px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
 }
-.logo span{color:var(--primary);}
-.menu-btn{font-size:24px;cursor:pointer;}
+
+.logo span{
+  color:var(--primary);
+}
+
+.menu-btn{
+  font-size:24px;
+  cursor:pointer;
+}
 
 /* MENU */
 .menu{
-position:fixed;top:0;right:-100%;
-width:80%;height:100%;background:#fff;
-padding:30px 20px;transition:.3s;
-display:flex;flex-direction:column;gap:20px;z-index:200;
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:80%;
+  height:100%;
+  background:#fff;
+  padding:30px 20px;
+  transition:.3s;
+  z-index:200;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
-.menu.active{right:0;}
-.menu a{text-decoration:none;color:#111;font-size:18px;}
+
+.menu.active{
+  right:0;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#111;
+  font-size:18px;
+  padding:10px;
+  border-radius:10px;
+}
+
+.menu a:hover{
+  background:#f1f5f9;
+}
 
 /* OVERLAY */
 .overlay{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.4);
-opacity:0;pointer-events:none;transition:.3s;z-index:150;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:150;
 }
-.overlay.active{opacity:1;pointer-events:all;}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:all;
+}
 
 /* CONTENIDO */
-.container{max-width:1000px;margin:auto;padding:40px 20px;}
-h2{text-align:center;margin-bottom:30px;}
-
-.servicios-grid{display:grid;gap:20px;}
-
-.servicio{
-background:#fff;padding:25px;border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:40px 20px;
 }
 
-.icon{font-size:30px;margin-bottom:10px;}
-.servicio p{color:#555;line-height:1.5;}
+h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* SERVICIOS */
+.servicios-grid{
+  display:grid;
+  gap:20px;
+}
+
+.servicio{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.servicio:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+.icon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.servicio p{
+  color:#555;
+  line-height:1.5;
+}
+
+/* CTA */
+.cta{
+  margin-top:50px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color:#fff;
+  padding:40px 20px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(37,99,235,0.3);
+}
+
+.cta p{
+  margin:15px 0 20px;
+}
+
+.cta-btn{
+  display:inline-block;
+  background:#fff;
+  color:#2563eb;
+  padding:12px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.cta-btn:hover{
+  transform:scale(1.05);
+}
 </style>
 </head>
 
@@ -72,6 +186,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
 <div class="container">
+
   <h2>Servicios</h2>
 
   <div class="servicios-grid">
@@ -95,6 +210,18 @@ box-shadow:0 10px 25px rgba(0,0,0,0.08);
     </div>
 
   </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>¿Necesitas asesoría?</h2>
+    <p>Nuestro equipo puede ayudarte a encontrar tu mejor opción.</p>
+
+    <a href="https://wa.me/524444917754?text=Hola,%20me%20interesa%20recibir%20asesoría%20sobre%20una%20propiedad"
+       class="cta-btn">
+       Solicitar asesoría
+    </a>
+  </div>
+
 </div>
 
 <script>
