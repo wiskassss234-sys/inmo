@@ -12,6 +12,59 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background: linear-gradient(180deg,#f1f5f9,#e2e8f0);}
 
+
+.footer{
+  background:#020617;
+  color:#e2e8f0;
+  margin-top:80px;
+}
+
+.footer-container{
+  max-width:1200px;
+  margin:auto;
+  padding:50px 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:40px;
+}
+
+.footer-col h2 span{
+  color:#2563eb;
+}
+
+.footer-col h3{
+  margin-bottom:15px;
+  color:#fff;
+}
+
+.footer-col p{
+  color:#94a3b8;
+  font-size:14px;
+}
+
+.footer-col a{
+  display:block;
+  color:#94a3b8;
+  text-decoration:none;
+  margin-bottom:8px;
+}
+
+.footer-col a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  text-align:center;
+  padding:20px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  color:#64748b;
+  font-size:13px;
+}
+
+
+
+
+
 /* HEADER */
 .header{
 display:flex;justify-content:space-between;align-items:center;
@@ -137,6 +190,46 @@ function calcular(){
     "$" + pago.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 </script>
+
+
+<div class="footer">
+
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h2>Inmobiliaria <span>Mi Dulce Hogar</span></h2>
+      <p>Encuentra la propiedad ideal con nosotros.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Enlaces</h3>
+      <a href="index.html">Propiedades</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="calculadora.html">Calculadora</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p>📱 444 491 7754</p>
+      <p>📍 Ciudad Valles, S.L.P.</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Mi Dulce Hogar
+  </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+  menu.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
+</script>
+
+
 
 </body>
 </html>
