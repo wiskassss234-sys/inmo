@@ -6,7 +6,7 @@
 <title>Servicios - Mi Dulce Hogar</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{--primary:#2563eb;}
 
@@ -35,51 +35,75 @@ body{
 }
 
 .logo{
-  text-transform: uppercase;
-}
-
-.logo{
   font-weight:700;
-  font-size:18px;
-  letter-spacing:0.3px;
+  cursor:pointer;
+  text-transform: uppercase;
 }
 
 .logo span{color:var(--primary);}
 .menu-btn{font-size:24px;cursor:pointer;}
 
-/* MENU */
+/* MENU PRO */
 .menu{
   position:fixed;
   top:0;
   right:-100%;
   width:80%;
   height:100%;
-  background:#fff;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
   padding:30px 20px;
-  transition:.3s;
+  transition:.4s ease;
+  z-index:200;
   display:flex;
   flex-direction:column;
   gap:20px;
-  z-index:200;
 }
-.menu.active{right:0;}
+
+.menu.active{
+  right:0;
+}
 
 .menu a{
   text-decoration:none;
   color:#111;
   font-size:18px;
+  padding:10px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.menu a:hover{
+  background:#f1f5f9;
+}
+
+.contacto{
+  margin-top:20px;
+  background:var(--primary);
+  color:#fff !important;
+  padding:12px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.contacto:hover{
+  background:#1e40af !important;
 }
 
 /* OVERLAY */
 .overlay{
   position:fixed;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.4);
   opacity:0;
   pointer-events:none;
   transition:.3s;
+  z-index:150;
 }
+
 .overlay.active{
   opacity:1;
   pointer-events:all;
@@ -108,6 +132,13 @@ h2{
   padding:25px;
   border-radius:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.servicio:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
 }
 
 .icon{
@@ -115,27 +146,65 @@ h2{
   margin-bottom:10px;
 }
 
-/* CTA */
-.cta{
-  margin-top:50px;
-  background: linear-gradient(135deg,#2563eb,#1d4ed8);
-  color:#fff;
-  padding:40px 20px;
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:300;
+}
+
+.modal.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.modal-box{
+  background:#fff;
+  padding:30px;
   border-radius:20px;
   text-align:center;
+  animation:pop .3s ease;
+  width:90%;
+  max-width:300px;
 }
 
-.cta-btn{
-  display:inline-block;
-  background:#fff;
-  color:#2563eb;
-  padding:12px 25px;
-  border-radius:12px;
-  text-decoration:none;
-  margin-top:15px;
+@keyframes pop{
+  from{transform:scale(.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
 
-/* FOOTER PRO */
+.modal button{
+  display:block;
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.modal button:hover{
+  background:#1e40af;
+}
+
+.cancel{
+  background:#64748b !important;
+}
+
+/* FOOTER */
 .footer{
   background:#020617;
   color:#e2e8f0;
@@ -160,15 +229,12 @@ h2{
   color:#fff;
 }
 
-.footer-col p{
+.footer-col p,
+.footer-col a{
   color:#94a3b8;
   font-size:14px;
-}
-
-.footer-col a{
-  display:block;
-  color:#94a3b8;
   text-decoration:none;
+  display:block;
   margin-bottom:8px;
 }
 
@@ -187,7 +253,6 @@ h2{
 </head>
 
 <body>
-
 <div class="header">
   <div class="logo" onclick="window.location.href='index.html'">
     Inmobiliaria <span>Mi Dulce Hogar</span>
@@ -195,51 +260,72 @@ h2{
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
+<!-- MENU -->
 <div id="menu" class="menu">
-  <a href="index.html">Propiedades</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="calculadora.html">Calculadora</a>
+  <a href="index.html">🏠 Propiedades</a>
+  <a href="servicios.html">🛠️ Servicios</a>
+  <a href="calculadora.html">🧮 Calculadora</a>
+
+  <a href="https://wa.me/524444917754?text=Hola,%20quiero%20información"
+     class="contacto">
+     📲 Contacto
+  </a>
 </div>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
+<!-- CONTENIDO -->
 <div class="container">
 
   <h2>Servicios</h2>
 
   <div class="servicios-grid">
-    <div class="servicio">
+
+    <div class="servicio" onclick="abrirModal('Compra de propiedades')">
       <div class="icon">🏡</div>
       <h3>Compra de propiedades</h3>
       <p>Te ayudamos a encontrar la mejor opción.</p>
     </div>
 
-    <div class="servicio">
+    <div class="servicio" onclick="abrirModal('Venta de propiedades')">
       <div class="icon">💰</div>
       <h3>Venta de propiedades</h3>
       <p>Vendemos tu propiedad rápido.</p>
     </div>
 
-    <div class="servicio">
+    <div class="servicio" onclick="abrirModal('Inversión inmobiliaria')">
       <div class="icon">📊</div>
       <h3>Inversión inmobiliaria</h3>
       <p>Maximiza tu inversión.</p>
     </div>
-  </div>
 
-  <div class="cta">
-    <h2>¿Necesitas asesoría?</h2>
-    <p>Nuestro equipo puede ayudarte a encontrar tu mejor opción.</p>
-
-    <a href="https://wa.me/524444917754?text=Hola,%20quiero%20asesoría"
-       class="cta-btn">
-       Solicitar asesoría
-    </a>
   </div>
 
 </div>
 
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <h3>Elegir asesor</h3>
+
+    <button onclick="enviar('524444917754')">
+     Germain Martínez
+    </button>
+
+    <button onclick="enviar('528124320438')">
+     Rutilio Espinoza
+    </button>
+
+    <button onclick="cerrarModal()" class="cancel">
+      Cancelar
+    </button>
+  </div>
+</div>
+
 <!-- FOOTER -->
+
+
+
 <div class="footer">
 
   <div class="footer-container">
@@ -259,22 +345,63 @@ h2{
     <div class="footer-col">
       <h3>Contacto</h3>
       <p>📱 444 491 7754</p>
-<p>📱 81 2432 0438 </p>
+      <p>📱 81 2432 0438</p>
       <p>📍 Ciudad Valles, S.L.P.</p>
     </div>
 
   </div>
+  
+   <div class="footer-col">
+  <h3>Síguenos</h3>
+
+  <a href="https://www.facebook.com/share/1DsHAoNDAa/" target="_blank">
+    <i class="fab fa-facebook"></i> Facebook
+  </a>
+
+  <a href="tiktok.com/@inmo.mi.dulce.hog" target="_blank">
+    <i class="fab fa-tiktok"></i> TikTok
+  </a>
+</div>
+  
+  
 
   <div class="footer-bottom">
     © 2026 Mi Dulce Hogar
   </div>
+  
+ 
+  
+  
 
 </div>
 
 <script>
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("overlay");
+const modal = document.getElementById("modal");
+
+let servicioSeleccionado = "";
+
+// MENU
 function toggleMenu(){
   menu.classList.toggle("active");
   overlay.classList.toggle("active");
+}
+
+// MODAL
+function abrirModal(servicio){
+  servicioSeleccionado = servicio;
+  modal.classList.add("active");
+}
+
+function cerrarModal(){
+  modal.classList.remove("active");
+}
+
+// WHATSAPP
+function enviar(numero){
+  const mensaje = `Hola, me interesa el servicio de ${servicioSeleccionado}`;
+  window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`);
 }
 </script>
 
