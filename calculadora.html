@@ -6,100 +6,47 @@
 <title>Calculadora - Mi Dulce Hogar</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{--primary:#2563eb;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background: linear-gradient(180deg,#f1f5f9,#e2e8f0);}
 
-
-.footer{
-  background:#020617;
-  color:#e2e8f0;
-  margin-top:80px;
-}
-
-.footer-container{
-  max-width:1200px;
-  margin:auto;
-  padding:50px 20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:40px;
-}
-
-.footer-col h2 span{
-  color:#2563eb;
-}
-
-.footer-col h3{
-  margin-bottom:15px;
-  color:#fff;
-}
-
-.footer-col p{
-  color:#94a3b8;
-  font-size:14px;
-}
-
-.footer-col a{
-  display:block;
-  color:#94a3b8;
-  text-decoration:none;
-  margin-bottom:8px;
-}
-
-.footer-col a:hover{
-  color:#fff;
-}
-
-.footer-bottom{
-  text-align:center;
-  padding:20px;
-  border-top:1px solid rgba(255,255,255,0.08);
-  color:#64748b;
-  font-size:13px;
-}
-
-
-
-
-
 /* HEADER */
 .header{
-display:flex;justify-content:space-between;align-items:center;
-background:rgba(255,255,255,0.9);
-backdrop-filter:blur(10px);
-padding:15px 20px;position:sticky;top:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);
+  padding:15px 20px;position:sticky;top:0;z-index:100;
 }
-
 .logo{
-  text-transform: uppercase;
-}
-
-.logo{
-font-weight:700;
-font-size:18px;
-  cursor:pointer;
+  font-weight:700;cursor:pointer;text-transform: uppercase;
 }
 .logo span{color:var(--primary);}
 .menu-btn{font-size:24px;cursor:pointer;}
 
 /* MENU */
 .menu{
-position:fixed;top:0;right:-100%;
-width:80%;height:100%;background:#fff;
-padding:30px 20px;transition:.3s;
-display:flex;flex-direction:column;gap:20px;z-index:200;
+  position:fixed;top:0;right:-100%;width:80%;height:100%;
+  background:#fff;padding:30px 20px;transition:.3s;
+  display:flex;flex-direction:column;gap:20px;z-index:200;
 }
 .menu.active{right:0;}
-.menu a{text-decoration:none;color:#111;font-size:18px;}
+.menu a{
+  text-decoration:none;color:#111;font-size:18px;
+  padding:10px;border-radius:10px;transition:.2s;
+}
+.menu a:hover{background:#2563eb;color:#fff;}
+.contacto{
+  margin-top:20px;background:var(--primary);
+  color:#fff !important;padding:12px;border-radius:12px;text-align:center;
+}
+.contacto:hover{background:#1e40af !important;}
 
 /* OVERLAY */
 .overlay{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.4);
-opacity:0;pointer-events:none;transition:.3s;z-index:150;
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.4);opacity:0;pointer-events:none;transition:.3s;z-index:150;
 }
 .overlay.active{opacity:1;pointer-events:all;}
 
@@ -107,54 +54,62 @@ opacity:0;pointer-events:none;transition:.3s;z-index:150;
 .container{max-width:600px;margin:auto;padding:40px 20px;}
 
 .calc-box{
-background:#fff;padding:25px;border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  background:#fff;padding:25px;border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
-
 .calc-box label{
-display:block;margin-top:15px;font-size:14px;color:#555;
+  display:block;margin-top:15px;font-size:14px;color:#555;
 }
-
 .calc-box input{
-width:100%;padding:12px;margin-top:5px;
-border-radius:10px;border:1px solid #ccc;
+  width:100%;padding:12px;margin-top:5px;border-radius:10px;border:1px solid #ccc;
 }
-
 .calc-box button{
-width:100%;margin-top:20px;padding:12px;
-background:var(--primary);color:#fff;
-border:none;border-radius:12px;font-size:16px;
+  width:100%;margin-top:20px;padding:12px;
+  background:var(--primary);color:#fff;
+  border:none;border-radius:12px;font-size:16px;
 }
+#resultado{text-align:center;margin-top:20px;font-size:28px;color:var(--primary);}
 
-#resultado{
-text-align:center;margin-top:20px;
-font-size:28px;color:var(--primary);
+/* FOOTER */
+.footer{
+  background:#020617;color:#e2e8f0;margin-top:80px;
 }
+.footer-container{
+  max-width:1200px;margin:auto;padding:50px 20px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;
+}
+.footer-col h2 span{color:#2563eb;}
+.footer-col h3{margin-bottom:15px;color:#fff;}
+.footer-col p,.footer-col a{color:#94a3b8;font-size:14px;text-decoration:none;display:block;margin-bottom:8px;}
+.footer-col a:hover{color:#fff;}
+.footer-col i{margin-right:8px;font-size:16px;}
+.footer-bottom{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,0.08);color:#64748b;font-size:13px;}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <div class="logo">Inmobiliaria <span>Mi Dulce Hogar</span></div>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
+<!-- MENU HAMBURGUESA -->
 <div id="menu" class="menu">
   <a href="index.html">Propiedades</a>
   <a href="servicios.html">Servicios</a>
   <a href="calculadora.html">Calculadora</a>
+  <a href="https://wa.me/524444917754" class="contacto" target="_blank">Contacto</a>
 </div>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
+<!-- CONTENIDO -->
 <div class="container">
-  <h2 style="text-align:center;margin-bottom:20px;">
-    Calculadora Hipotecaria
-  </h2>
+  <h2 style="text-align:center;margin-bottom:20px;">Calculadora Hipotecaria</h2>
 
   <div class="calc-box">
-
     <label>Precio de la propiedad</label>
     <input type="number" id="precio" value="3000000">
 
@@ -168,37 +123,12 @@ font-size:28px;color:var(--primary);
     <input type="number" id="anos" value="20">
 
     <button onclick="calcular()">Calcular</button>
-
     <h3 id="resultado">$0</h3>
-
   </div>
 </div>
 
-<script>
-function toggleMenu(){
-  menu.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
-
-function calcular(){
-  const precio = parseFloat(document.getElementById("precio").value);
-  const enganche = parseFloat(document.getElementById("enganche").value)/100;
-  const interes = parseFloat(document.getElementById("interes").value)/100/12;
-  const meses = parseFloat(document.getElementById("anos").value)*12;
-
-  const monto = precio * (1 - enganche);
-
-  const pago = monto * (interes * Math.pow(1+interes, meses)) /
-               (Math.pow(1+interes, meses)-1);
-
-  document.getElementById("resultado").innerText =
-    "$" + pago.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-</script>
-
-
+<!-- FOOTER -->
 <div class="footer">
-
   <div class="footer-container">
 
     <div class="footer-col">
@@ -216,26 +146,42 @@ function calcular(){
     <div class="footer-col">
       <h3>Contacto</h3>
       <p>📱 444 491 7754</p>
-<p>📱81 2432 0438</p>
+      <p>📱 81 2432 0438</p>
       <p>📍 Ciudad Valles, S.L.P.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Síguenos</h3>
+      <a href="https://www.facebook.com/share/1DsHAoNDAa/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="tiktok.com/@inmo.mi.dulce.hog" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
     </div>
 
   </div>
 
-  <div class="footer-bottom">
-    © 2026 Mi Dulce Hogar
-  </div>
-
+  <div class="footer-bottom">© 2026 Mi Dulce Hogar</div>
 </div>
 
 <script>
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("overlay");
+
 function toggleMenu(){
   menu.classList.toggle("active");
   overlay.classList.toggle("active");
 }
+
+function calcular(){
+  const precio = parseFloat(document.getElementById("precio").value);
+  const enganche = parseFloat(document.getElementById("enganche").value)/100;
+  const interes = parseFloat(document.getElementById("interes").value)/100/12;
+  const meses = parseFloat(document.getElementById("anos").value)*12;
+  const monto = precio * (1 - enganche);
+  const pago = monto * (interes * Math.pow(1+interes, meses)) /
+               (Math.pow(1+interes, meses)-1);
+  document.getElementById("resultado").innerText =
+    "$" + pago.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 </script>
-
-
 
 </body>
 </html>
