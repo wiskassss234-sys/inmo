@@ -7,6 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 :root{--primary:#2563eb;}
 
@@ -43,7 +44,7 @@ body{
 .logo span{color:var(--primary);}
 .menu-btn{font-size:24px;cursor:pointer;}
 
-/* MENU PRO */
+/* MENU */
 .menu{
   position:fixed;
   top:0;
@@ -74,7 +75,8 @@ body{
 }
 
 .menu a:hover{
-  background:#f1f5f9;
+  background:#2563eb;
+  color:#fff;
 }
 
 .contacto{
@@ -242,6 +244,11 @@ h2{
   color:#fff;
 }
 
+.footer-col i{
+  margin-right:8px;
+  font-size:16px;
+}
+
 .footer-bottom{
   text-align:center;
   padding:20px;
@@ -262,25 +269,18 @@ h2{
 
 <!-- MENU -->
 <div id="menu" class="menu">
-  <a href="index.html">🏠 Propiedades</a>
-  <a href="servicios.html">🛠️ Servicios</a>
-  <a href="calculadora.html">🧮 Calculadora</a>
-
-  <a href="https://wa.me/524444917754?text=Hola,%20quiero%20información"
-     class="contacto">
-     📲 Contacto
-  </a>
+  <a href="index.html">Propiedades</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="calculadora.html">Calculadora</a>
+  <a href="https://wa.me/524444917754?text=Hola,%20quiero%20información" class="contacto">Contacto</a>
 </div>
 
 <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
 
 <!-- CONTENIDO -->
 <div class="container">
-
   <h2>Servicios</h2>
-
   <div class="servicios-grid">
-
     <div class="servicio" onclick="abrirModal('Compra de propiedades')">
       <div class="icon">🏡</div>
       <h3>Compra de propiedades</h3>
@@ -298,36 +298,21 @@ h2{
       <h3>Inversión inmobiliaria</h3>
       <p>Maximiza tu inversión.</p>
     </div>
-
   </div>
-
 </div>
 
 <!-- MODAL -->
 <div id="modal" class="modal">
   <div class="modal-box">
     <h3>Elegir asesor</h3>
-
-    <button onclick="enviar('524444917754')">
-     Germain Martínez
-    </button>
-
-    <button onclick="enviar('528124320438')">
-     Rutilio Espinoza
-    </button>
-
-    <button onclick="cerrarModal()" class="cancel">
-      Cancelar
-    </button>
+    <button onclick="enviar('524444917754')">Germain Martínez</button>
+    <button onclick="enviar('528124320438')">Rutilio Espinoza</button>
+    <button onclick="cerrarModal()" class="cancel">Cancelar</button>
   </div>
 </div>
 
 <!-- FOOTER -->
-
-
-
 <div class="footer">
-
   <div class="footer-container">
 
     <div class="footer-col">
@@ -349,30 +334,15 @@ h2{
       <p>📍 Ciudad Valles, S.L.P.</p>
     </div>
 
+    <div class="footer-col">
+      <h3>Síguenos</h3>
+      <a href="https://www.facebook.com/share/1DsHAoNDAa/" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="https://www.tiktok.com/@inmo.mi.dulce.hog" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+    </div>
+
   </div>
-  
-   <div class="footer-col">
-  <h3>Síguenos</h3>
 
-  <a href="https://www.facebook.com/share/1DsHAoNDAa/" target="_blank">
-    <i class="fab fa-facebook"></i> Facebook
-  </a>
-
-  <a href="tiktok.com/@inmo.mi.dulce.hog" target="_blank">
-    <i class="fab fa-tiktok"></i> TikTok
-  </a>
-</div>
-  
-  
-
-  <div class="footer-bottom">
-    © 2026 Mi Dulce Hogar
-  </div>
-  
- 
-  
-  
-
+  <div class="footer-bottom">© 2026 Mi Dulce Hogar</div>
 </div>
 
 <script>
