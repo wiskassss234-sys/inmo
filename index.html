@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Dulce Hogar</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -25,6 +25,19 @@ body{
 
 
 /* FOOTER PRO */
+
+.footer-col i{
+  margin-right:8px;
+  font-size:16px;
+}
+
+/* Hover más bonito */
+.footer-col a:hover i{
+  transform: scale(1.2);
+  transition:.2s;
+}
+
+
 .footer{
   background:#020617;
   color:#e2e8f0;
@@ -198,6 +211,27 @@ body{
 }
 
 /* BUSCADOR */
+
+
+
+.filtros{
+  display:flex;
+  gap:10px;
+  max-width:800px;
+  margin:0 auto 20px;
+}
+
+.filtros select{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  background:#fff;
+}
+
+
+
+
 .search-box{
   background: rgba(255,255,255,0.7);
   backdrop-filter: blur(10px);
@@ -296,6 +330,32 @@ body{
   <input id="busqueda" placeholder="Buscar ubicación...">
 </div>
 
+
+<div class="filtros">
+
+  <select id="filtroPrecio">
+    <option value="">💰 Precio</option>
+    <option value="bajo">Menos de $1,000,000</option>
+    <option value="medio">$1,000,000 - $3,000,000</option>
+    <option value="alto">Más de $3,000,000</option>
+  </select>
+
+  <select id="filtroTipo">
+    <option value="">🏠 Tipo</option>
+    <option value="casa">Casa</option>
+    <option value="departamento">Departamento</option>
+    <option value="terreno">Terreno</option>
+  </select>
+
+</div>
+
+
+
+
+
+
+
+
 <div class="container">
   <div class="cards" id="contenedor"></div>
 </div>
@@ -310,6 +370,9 @@ function toggleMenu(){
 
 const contenedor=document.getElementById("contenedor");
 const busqueda=document.getElementById("busqueda");
+
+const filtroPrecio = document.getElementById("filtroPrecio");
+const filtroTipo = document.getElementById("filtroTipo");
 
 function mostrar(lista){
   contenedor.innerHTML="";
@@ -333,6 +396,36 @@ function mostrar(lista){
   });
 }
 
+
+function filtrarTodo(){
+  const texto = busqueda.value.toLowerCase();
+  const precio = filtroPrecio.value;
+  const tipo = filtroTipo.value;
+
+  let resultado = propiedades.filter(p => {
+
+    // FILTRO TEXTO
+    const coincideTexto = p.ubicacion.toLowerCase().includes(texto);
+
+    // FILTRO PRECIO
+    let coincidePrecio = true;
+
+    if(precio === "bajo") coincidePrecio = p.valor < 1000000;
+    if(precio === "medio") coincidePrecio = p.valor >= 1000000 && p.valor <= 3000000;
+    if(precio === "alto") coincidePrecio = p.valor > 3000000;
+
+    // FILTRO TIPO
+    const coincideTipo = tipo ? p.tipo === tipo : true;
+
+    return coincideTexto && coincidePrecio && coincideTipo;
+  });
+
+  mostrar(resultado);
+}
+
+
+
+
 busqueda.addEventListener("input",()=>{
   const val=busqueda.value.toLowerCase();
   mostrar(propiedades.filter(p=>p.ubicacion.toLowerCase().includes(val)));
@@ -347,7 +440,7 @@ mostrar(propiedades);
   <div class="footer-container">
 
     <div class="footer-col">
-      <h2>Inmobiliaria <span>Mi Dulce Hogar</span></h2>
+      <h2>INMOBILIARIA<span> MI DULCE HOGAR</span></h2>
       <p>Encuentra la propiedad ideal con nosotros.</p>
     </div>
 
@@ -361,11 +454,26 @@ mostrar(propiedades);
     <div class="footer-col">
       <h3>Contacto</h3>
       <p>📱 444 491 7754</p>
-<p>📱81 2432 0438</p>
+      <p>📱 8124320438</p>
       <p>📍 Ciudad Valles, S.L.P.</p>
     </div>
 
   </div>
+
+<div class="footer-col">
+  <h3>Síguenos</h3>
+
+  <a href="https://www.facebook.com/share/1DsHAoNDAa/" target="_blank">
+    <i class="fab fa-facebook"></i> Facebook
+  </a>
+
+  <a href="tiktok.com/@inmo.mi.dulce.hog" target="_blank">
+    <i class="fab fa-tiktok"></i> TikTok
+  </a>
+</div>
+
+
+
 
   <div class="footer-bottom">
     © 2026 Mi Dulce Hogar
@@ -384,3 +492,7 @@ function toggleMenu(){
 
 </body>
 </html>
+
+
+
+INDEX PPP
